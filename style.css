@@ -1,0 +1,119 @@
+/* this is just the better box model */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+/* minimalist reset */
+* {
+	padding: 0;
+	margin: 0;
+}
+
+/* typography */
+body {
+	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+	line-height: 1.5;
+	background-color: rgb(30, 30, 30);
+	color: rgb(212, 212, 212);
+}
+
+/* no text overflow */
+p, h1, h2, h3, h4, h5, h6 {
+	overflow-wrap: break-word;
+}
+
+a {
+	color: inherit;
+}
+
+a:hover, a:focus {
+	color: rgb(30, 30, 30);
+	background-color: rgb(212, 212, 212);
+}
+
+/* media should not be inline, but be blocks */
+/* media shouldn't break out of their container */
+img, picture, video, canvas, svg {
+	display: block;
+    max-width: 100%;
+}
+
+/* remove gap between table cells */
+table {
+	border-collapse: collapse;
+}
+
+body {
+	padding: 2rem;
+	margin: 1rem auto;
+	max-width: 60rem;
+}
+
+@media (max-width: 600px)  {
+	body {
+		padding: 0.5rem;
+	}
+}
+
+h1 {
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+h2 {
+	border-top: solid 0.05rem;
+	padding-top: 2rem;
+	font-size: 2rem;
+	font-weight: 400;
+}
+
+h2 a {
+	text-decoration: none;
+}
+
+h4 {
+	font-weight: 400;
+	filter: opacity(0.5);
+}
+
+p, img {
+	padding-top: 1rem;
+}
+
+section {
+	padding-bottom: 2rem;
+}
+
+figcaption {
+	text-align: center;
+	font-style: italic;
+	margin: 1rem 0;
+	font-size: 0.9rem;
+}
+
+footer {
+	padding-top: 5rem;
+	text-align: right;
+}
+
+ol:first-of-type {
+	counter-reset: item;
+}
+ol>li {
+    list-style: none inside;
+    margin: 40px 0;
+    overflow: hidden;
+    line-height: 1.5em;
+}
+ol>li:before {
+    counter-increment: item;
+    content: counter(item);
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 25px;
+	color: rgb(30, 30, 30);
+	background: rgb(212, 212, 212);
+    text-align: center;
+    float: left;
+    font-weight: 700;
+}
