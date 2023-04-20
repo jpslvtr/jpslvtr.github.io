@@ -60,14 +60,15 @@ a:hover, a:focus {
 	background-color: var(--text-color);
 }
 
+
 ul {
 	margin-left: 30px;
 	margin-top: 10px;
+	line-height: 1.5em;
 }
 
 li {
 	margin-bottom: 10px;
-	/* margin-top: 10px; */
 }
 
 
