@@ -1,6 +1,8 @@
 :root {
-	--back-color: rgb(30, 30, 30);
-	--text-color: rgb(212, 212, 212);
+	/* --back-color: rgb(30, 30, 30); */
+	/* --text-color: rgb(212, 212, 212); */
+	--back-color: rgb(255, 255, 255);
+	--text-color: rgb(0, 0, 0);
 }
 
 /* minimalist reset */
@@ -8,12 +10,16 @@
 	padding: 0;
 	margin: 0;
 	font-size: 1em;
+	/* font-size: .95em; */
 }
 
 body {
-	background-color: rgb(30, 30, 30);
-	color: rgb(212, 212, 212);
-	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+	/* background-color: rgb(30, 30, 30); */
+	/* color: rgb(212, 212, 212); */
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+	/* font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif; */
+	font-family: "Times New Roman", Times, serif;
 }
 
 main {
@@ -68,7 +74,7 @@ ul {
 }
 
 li {
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 
