@@ -47,9 +47,12 @@ h3 {
 }
 
 footer {
-	text-align: right;
+	/* text-align: right; */
 	margin-top: 20px;
 	padding-bottom: 20px;
+	position: fixed;
+	bottom: 0;
+	max-width: 600px;
 }
 
 p {
