@@ -23,11 +23,27 @@ body {
 }
 
 main {
-	margin: 0 auto;
-	padding: 30px 140px 0 140px;
-	padding-bottom: 20px;
-	max-width: 600px;
-	min-height: 100vh;
+  margin: 0 auto;
+  padding: 30px 140px 0 140px;
+  max-width: 600px;
+}
+
+footer {
+  width: 100%;
+  padding: 10px;
+  margin-top: 40px;
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px 130px 0 130px;
+  text-align: left;
+}
+
+.footer-right {
+  text-align: right;
+  margin-top: 10px;
 }
 
 h1 {
