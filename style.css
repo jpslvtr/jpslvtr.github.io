@@ -1,25 +1,38 @@
 :root {
-	/* --back-color: rgb(30, 30, 30); */
-	/* --text-color: rgb(212, 212, 212); */
-	--back-color: rgb(255, 255, 255);
-	--text-color: rgb(0, 0, 0);
+  --back-color: rgb(255, 255, 255);
+  --text-color: rgb(0, 0, 0);
 }
 
-/* minimalist reset */
 * {
-	padding: 0;
-	margin: 0;
-	font-size: 1em;
-	/* font-size: .95em; */
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
-	/* background-color: rgb(30, 30, 30); */
-	/* color: rgb(212, 212, 212); */
-	background-color: rgb(255, 255, 255);
-	color: rgb(0, 0, 0);
-	/* font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif; */
-	font-family: "Times New Roman", Times, serif;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-family: "Times New Roman", Times, serif;
+}
+
+.wrapper {
+  flex: 1;
+}
+
+header {
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 main {
@@ -32,6 +45,7 @@ footer {
   width: 100%;
   padding: 10px;
   margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .footer-content {
@@ -47,54 +61,54 @@ footer {
 }
 
 h1 {
-	font-size: 1.2em;
-	font-weight: 700;
-	display: inline;
-	margin-right: 5px;
+  font-size: 1.2em;
+  font-weight: 700;
+  display: inline;
+  margin-right: 5px;
 }
 
 h2 {
-	margin-top: 50px;
-	font-size: 1.5em;
+  margin-top: 50px;
+  font-size: 1.5em;
 }
 
 h3 {
-	margin-top: 50px;
-	font-size: 2em;
+  margin-top: 50px;
+  font-size: 2em;
 }
 
 p {
-	line-height: 1.5em;
-	margin-top: 20px;
-	display: block;
+  line-height: 1.5em;
+  margin-top: 20px;
+  display: block;
 }
 
 a {
-	color: inherit;
-}
-a:hover, a:focus {
-	color: var(--back-color);
-	background-color: var(--text-color);
+  color: inherit;
 }
 
+a:hover, a:focus {
+  color: var(--back-color);
+  background-color: var(--text-color);
+}
 
 ul {
-	margin-left: 30px;
-	margin-top: 10px;
-	line-height: 1.3em;
+  margin-left: 30px;
+  margin-top: 10px;
+  line-height: 1.3em;
 }
 
 li {
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 @media (max-width: 600px) {
   main {
-  	max-width: 600px;
+    max-width: 600px;
     padding: 10px;
   }
+
   h2 {
     font-size: 1.2em;
-  }	
+  }
 }
-
