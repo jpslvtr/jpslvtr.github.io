@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JP Salvatore - Blog</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <h3>JP Salvatore</h3>
+            <br>
+            <nav>
+                <a href="index">Start Here</a>
+                <a href="projects">My Projects</a>
+                <a href="blog">Blog</a>
+            </nav>
+        </header>
+        <hr>
+        <main>
+            <ul>
+                <li><a href="/p/2019-12-28.html">Clearer Models</a></li>
+                <li><a href="/p/2019-11-18.html">First 50 Mile Ultramarathon</a></li>
+            </ul>
+        </main>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p><i>This page does not reflect the official position of Stanford University, the Department of Defense, or
+                    the US Government.</i></p>
+            <p class="footer-right">&copy; 2024 James Park</p>
+        </div>
+    </footer>
+</body>
+
+</html>

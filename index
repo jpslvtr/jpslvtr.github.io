@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>JP Salvatore</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="style.css">
+	<link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header>
+			<h3>JP Salvatore</h3>
+			<br>
+			<nav>
+				<a href="index">Start Here</a>
+				<a href="projects">My Projects</a>
+				<a href="blog">Blog</a>
+			</nav>
+		</header>
+		<hr>
+		<main>
+			<h1>Start Here</h1>
+			<p>
+				I'm currently pursuing my MBA at Stanford Graduate School of Business. Previously, I served as a
+				cryptologist and intelligence officer in the US Navy. Before that, I earned my BS from the US Naval
+				Academy, where I studied Computer Science.
+				<br><br>
+				I try to lead a <a href="https://calnewport.com/the-deep-life-some-notes/" target="_blank">deep life</a>
+				and organize my pursuits into four buckets: craft (work and quality leisure), community (family,
+				friends), contemplation (matters of the soul), and constitution (health). My craft bucket largely falls
+				into two categories: tech for national security and exploring ways to create more meaningful social
+				media.
+				<br><br>
+				If you want to get in touch, <a href="https://substack.com/@jpslvtr" target="_blank">direct message me
+					on Substack</a> or <a href="mailto:jpslvtr@gmail.com">send me an email</a>.
+			</p>
+		</main>
+	</div>
+	<footer>
+		<div class="footer-content">
+			<p><i>This page does not reflect the official position of Stanford University, the Department of Defense, or
+					the US Government.</i></p>
+			<p class="footer-right">&copy; 2024 James Park</p>
+		</div>
+	</footer>
+
+	<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+	<script
+		type="text/javascript">(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'ADDRESS'; ftypes[3] = 'address'; fnames[4] = 'PHONE'; ftypes[4] = 'phone'; fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
+</body>
+
+</html>

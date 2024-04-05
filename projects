@@ -15,9 +15,9 @@
             <h3>JP Salvatore</h3>
             <br>
             <nav>
-                <a href="index.html">Start Here</a>
-                <a href="projects.html">My Projects</a>
-                <a href="https://jpslvtr.substack.com/" target="_blank">Blog</a>
+                <a href="index">Start Here</a>
+                <a href="projects">My Projects</a>
+                <a href="blog">Blog</a>
             </nav>
         </header>
         <hr>
