@@ -1,121 +1,121 @@
 :root {
-    --back-color: rgb(255, 255, 255);
-    --text-color: rgb(0, 0, 0);
+  --back-color: rgb(255, 255, 255);
+  --text-color: rgb(0, 0, 0);
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    font-size: 1em;
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
 }
 
 html, body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    font-family: "Times New Roman", Times, serif;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-family: "Times New Roman", Times, serif;
 }
 
 .wrapper {
-    flex: 1;
+  flex: 1;
 }
 
 header {
-    text-align: center;
-    padding: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
 nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 main {
-    margin: 0 auto;
-    padding: 20px;
-    max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 600px;
 }
 
 footer {
-    width: 100%;
-    padding: 10px;
+  width: 100%;
+  padding: 10px;
 }
 
 .footer-content {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
 }
 
 .footer-right {
-    text-align: right;
-    margin-top: 10px;
+  text-align: right;
+  margin-top: 10px;
 }
 
 h1 {
-    font-size: 1.5em;
-    font-weight: 700;
-    display: inline;
-    margin-right: 5px;
+  font-size: 1.5em;
+  font-weight: 700;
+  display: inline;
+  margin-right: 5px;
 }
 
 h2 {
-    margin-top: 50px;
-    font-size: 1.3em;
+  margin-top: 50px;
+  font-size: 1.3em;
 }
 
 h3 {
-    margin-top: 50px;
-    font-size: 1.8em;
+  margin-top: 50px;
+  font-size: 1.8em;
 }
 
 p {
-    line-height: 1.5em;
-    margin-top: 20px;
-    display: block;
+  line-height: 1.5em;
+  margin-top: 20px;
+  display: block;
 }
 
 a {
-    color: inherit;
+  color: inherit;
 }
 
 a:hover, a:focus {
-    color: var(--back-color);
-    background-color: var(--text-color);
+  color: var(--back-color);
+  background-color: var(--text-color);
 }
 
 ul {
-    margin-left: 30px;
-    margin-top: 10px;
-    line-height: 1.3em;
+  margin-left: 30px;
+  margin-top: 10px;
+  line-height: 1.3em;
 }
 
 li {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 #mc_embed_signup {
-    background: #fff; 
-    false;
-    clear: left; 
-    width: 600px;
+  background: #fff;
+  false;
+  clear: left;
+  width: 600px;
 }
 
 @media (min-width: 601px) {
-    main {
-        padding: 30px 140px 0 140px;
-    }
+  main {
+    padding: 30px 140px 0 140px;
+  }
 
-    .footer-content {
-        padding: 30px 130px 0 130px;
-    }
+  .footer-content {
+    padding: 30px 130px 0 130px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -126,5 +126,19 @@ li {
   .footer-content {
     max-width: 100%;
     padding: 0 20px;
+  }
+
+  #mc_embed_signup {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  #mc_embed_signup input.email {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #mc_embed_signup .button {
+    width: 100%;
   }
 }
