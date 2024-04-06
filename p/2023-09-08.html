@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>My Thoughts On Artificial Intelligence</title>
+    <link rel="icon" type="image/png" href="../favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <h3>JP Salvatore</h3>
+            <br>
+            <nav>
+                <a href="../index.html">Start Here</a>
+                <a href="../projects.html">My Projects</a>
+                <a href="../blog.html">Blog</a>
+            </nav>
+        </header>
+        <hr>
+        <main>
+            <article>
+                <h1>My Thoughts On Artificial Intelligence</h1>
+                <p><i>Sep 08, 2023</i></p>
+                <p>
+                    We are no closer to creating what is commonly referred to as “artificial general intelligence” than we were seven
+                    decades ago. You might think I’m delirious, given the emergence of systems like ChatGPT. Let’s talk about it.
+                    <br><br>
+                    The Birth of Artificial Intelligence (AI)
+                    <br><br>
+                    Most of the core ideas in AI emerged in the 1950s. Arthur Samuel (1901-1980) was a pioneer in computer science who
+                    coined the term "machine learning." He developed a checkers-playing program that learned to improve its performance
+                    through self-play. This program used techniques like feature extraction and decision trees, which are still used to this
+                    day. Marvin Minsky (1927-2016) was another computer scientist who, in 1969, co-authored "Perceptrons," codifying neural
+                    network research borne from the 1940s. A subset of machine learning called deep learning has gained prominence in recent
+                    years; this prominence can be seen as an evolution of the aforementioned neural network research. Lastly, Noam Chomsky
+                    (1928-) is a linguist who, in the 1950s and 1960s, conducted much of the early research in natural language processing.
+                    Modern deep learning models like the transformer-based BERT or GPT owe their foundations to Chomsky.
+                    <br><br>
+                    Another famous contributor to AI, albeit indirectly, is Claude Shannon (1916-2001). Shannon was a mathematician and
+                    computer scientist whose seminal paper in 1948, "A Mathematical Theory of Communication," gave birth to information
+                    theory. We can attribute the digital age to this paper. The paper includes a section in which he briefly describes an
+                    experiment in automatic text generation. Shannon would start with a single word, like "the," and use it as a seed to
+                    generate a sentence. He would open a book from his library, flip to a random page until he reached the word "the," and
+                    then he wrote down the word that came after. And so on. This arbitrary thought experiment laid the foundation for
+                    modern-day AI text generation capabilities. Shannon's approach involved selecting words from a source text to construct
+                    coherent sentences, representing a basic form of what we now observe in responses from systems like ChatGPT.
+                    <br><br>
+                    Large Language Models (LLMs)
+                    <br><br>
+                    When you submit a request to ChatGPT, the text you type undergoes a transformation. It may sound sophisticated, but in
+                    essence, it's a modernized version of Shannon's approach to automatic text generation. ChatGPT operates on a similar
+                    principle, producing responses one word at a time while searching its source texts for groups of words that match the
+                    end of the sentence it's currently constructing.
+                    <br><br>
+                    This method has its limitations. Eventually, ChatGPT may need to look for phrases that don't exist in its source texts.
+                    To overcome this, it adopts a voting approach. Instead of relying solely on exact matches, ChatGPT scans its source
+                    texts for occurrences of the target phrase, treating each match as a vote for the next word. ChatGPT employs techniques
+                    for calculating the similarity between phrases and assigns votes accordingly. Weak matches receive weak votes, and exact
+                    matches receive the strongest votes. This approach injects diversity into its word selection, making its responses sound
+                    more natural and human-like.
+                    <br><br>
+                    The outcome is a system capable of producing lengthy passages of text that, at first glance, seem remarkably coherent.
+                    But ChatGPT's brilliance, much like Shannon's experiment, stems from pattern-matching and statistical analysis rather
+                    than true understanding or consciousness. The breakthroughs we see today through ChatGPT - which is an instance of an
+                    LLM that uses deep learning techniques and the transformer architecture - are largely driven by the availability of
+                    massive datasets.
+                    <br><br>
+                    The Illusion of Intelligence
+                    <br><br>
+                    A system like ChatGPT does not create; it imitates. It copies, manipulates, and pastes together text that already exists
+                    to produce something that sounds like how a real person would talk.
+                    <br><br>
+                    Douglas Hofstadter, author of Gödel, Escher, Bach: an Eternal Golden Braid, suggests that consciousness arises from
+                    self-referential feedback loops, or “strange loops,” where a system's output somehow influences its own processes,
+                    creating a recursive structure. I don’t know if Hofstadter has cracked the code to consciousness, but his concept of
+                    strange loops is about as close as any other theory of consciousness gets. ChatGPT operates based on predefined rules
+                    and patterns learned from the massive dataset it was trained on. The neural networks within ChatGPT are static once
+                    trained. Our minds, on the other hand, maintain a constantly updated model of the world and record through memories.
+                    ChatGPT does not have either.
+                    <br><br>
+                    In conclusion, systems like ChatGPT are powerful and seem intelligent, but they lack the essential qualities of
+                    consciousness. Their operation is based on static neural networks and predefined rules, without self-awareness or
+                    self-referential feedback loops. ChatGPT, although a remarkable tool, will remain forever a distant echo of the depths
+                    of true human consciousness.
+                </p>
+            </article>
+        </main>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p><i>This page does not reflect the official position of Stanford University, the Department of Defense, or
+                    the US Government.</i></p>
+            <p class="footer-right">&copy; 2024 James Park</p>
+        </div>
+    </footer>
+</body>
+
+</html>
