@@ -101,12 +101,19 @@ li {
     margin-bottom: 5px;
 }
 
+#mc_embed_signup {
+    background: #fff; 
+    false;
+    clear: left; 
+    width: 600px;
+}
+
 @media (min-width: 601px) {
     main {
         padding: 30px 140px 0 140px;
     }
 
-    .footer-content {
+    .footer-content {   
         padding: 30px 130px 0 130px;
     }
 }
