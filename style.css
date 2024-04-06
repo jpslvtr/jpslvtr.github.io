@@ -113,7 +113,17 @@ li {
         padding: 30px 140px 0 140px;
     }
 
-    .footer-content {   
+    .footer-content {
         padding: 30px 130px 0 130px;
     }
+}
+
+@media (max-width: 600px) {
+  footer {
+    padding: 10px 20px;
+  }
+
+  .footer-content {
+    max-width: 100%;
+  }
 }
