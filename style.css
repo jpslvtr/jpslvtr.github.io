@@ -144,3 +144,8 @@ li {
     width: 100%;
   }
 }
+
+body, .wrapper, footer {
+    margin: 0;
+    padding: 0;
+}
