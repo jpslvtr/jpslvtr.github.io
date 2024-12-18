@@ -24,7 +24,7 @@ body {
 }
 
 .wrapper {
-  flex: 1;
+  flex: 1 0 auto;
 }
 
 header {
@@ -46,6 +46,7 @@ main {
 }
 
 footer {
+  flex-shrink: 0;
   width: 100%;
   padding: 5px;
 }
@@ -145,7 +146,3 @@ li {
   }
 }
 
-body, .wrapper, footer {
-    margin: 0;
-    padding: 0;
-}
