@@ -32,11 +32,10 @@ header {
   padding: 20px;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
+header a {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9em;
 }
 
 main {
@@ -146,3 +145,21 @@ li {
   }
 }
 
+header {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+}
+
+.back-link {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+@media (max-width: 600px) {
+    .back-link {
+        left: 10px;
+        top: 10px;
+    }
+}
