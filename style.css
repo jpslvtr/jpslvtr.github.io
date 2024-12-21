@@ -152,9 +152,11 @@ header {
 }
 
 .back-link {
-    position: absolute;
-    left: 20px;
-    top: 20px;
+    margin-bottom: 20px;
+}
+
+.back-link a {
+    text-decoration: none;
 }
 
 @media (max-width: 600px) {
