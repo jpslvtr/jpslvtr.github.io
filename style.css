@@ -1,5 +1,5 @@
 :root {
-  --back-color: rgb(255, 255, 255);
+  --back-color: #f0f0f0;
   --text-color: rgb(0, 0, 0);
 }
 
@@ -17,7 +17,7 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
+  background-color: #f0f0f0;
   color: rgb(0, 0, 0);
   font-family: "Times New Roman", Times, serif;
   min-height: 100vh;
