@@ -152,15 +152,16 @@ li {
 
 @media (max-width: 600px) {
   .top-section {
-    flex-direction: column;
+    gap: 10px;
   }
 
   .profile-image {
-    width: 200px;
+    width: 100px;
   }
 
   .right-column {
-    margin-top: 10px;
+    margin-top: 0;
+    font-size: 0.9em;
   }
 
   footer {
@@ -170,6 +171,10 @@ li {
   .footer-content {
     max-width: 100%;
     padding: 0 20px;
+  }
+
+  main {
+    padding: 20px 10px;
   }
 }
 
