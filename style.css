@@ -122,7 +122,7 @@ a:hover, a:focus {
   background-color: var(--text-color);
 }
 
-ul {
+ul, ol {
   margin-left: 30px;
   margin-top: 10px;
   line-height: 1.3em;
@@ -181,4 +181,51 @@ li {
 
 .content-wrapper .top-section .left-column .profile-image {
     width: 150px;
+}
+
+.blog-posts {
+    margin-top: 20px;
+}
+
+.post-preview {
+    margin-bottom: 30px;
+}
+
+.post-preview h4 {
+    margin-bottom: 5px;
+}
+
+.post-meta {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.post-excerpt {
+    margin-top: 10px;
+}
+
+.blog-post {
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.blog-post p {
+    margin-bottom: 20px;
+}
+
+.blog-post img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+.post-title {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+}
+
+.para-break {
+    display: block;
+    margin-bottom: 1em;
 }
