@@ -125,11 +125,16 @@ a:hover, a:focus {
 ul, ol {
   margin-left: 30px;
   margin-top: 10px;
-  line-height: 1.3em;
+  line-height: 1.5em;
 }
 
 li {
   margin-bottom: 5px;
+}
+
+.blog-post li {
+  margin-top: -5px;
+  margin-bottom: -5px;
 }
 
 .right-column p {
