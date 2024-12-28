@@ -122,19 +122,28 @@ a:hover, a:focus {
   background-color: var(--text-color);
 }
 
-ul, ol {
-  margin-left: 30px;
-  margin-top: 10px;
-  line-height: 1.5em;
+/* Make the general list rules more specific to non-blog areas */
+ul:not(.blog-post ul), 
+ol:not(.blog-post ol) {
+    margin-left: 30px;
+    margin-top: 10px;
+    line-height: 1.5em;
 }
 
-li {
-  margin-bottom: 5px;
+li:not(.blog-post li) {
+    margin-bottom: 5px;
+}
+
+/* Then set explicit rules for blog posts */
+.blog-post ul,
+.blog-post ol {
+    margin-left: 30px;
+    margin-top: 10px;
+    line-height: 1.5em;
 }
 
 .blog-post li {
-  margin-top: -5px;
-  margin-bottom: -5px;
+    margin-top: -10px;
 }
 
 .right-column p {
@@ -233,4 +242,13 @@ li {
 .para-break {
     display: block;
     margin-bottom: 1em;
+}
+
+.svg-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    fill: currentColor;
+    vertical-align: text-bottom;
+    padding-right: 5px;
 }
