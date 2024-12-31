@@ -135,15 +135,11 @@ li:not(.blog-post li) {
 }
 
 /* Then set explicit rules for blog posts */
-.blog-post ul,
-.blog-post ol {
+.blog-post ul, 
+.blog-post ol { 
     margin-left: 30px;
-    margin-top: 10px;
+    margin-top: 1em; 
     line-height: 1.5em;
-}
-
-.blog-post li {
-    margin-top: -10px;
 }
 
 .right-column p {
