@@ -1,8 +1,38 @@
+/* ---------------------- Font Face Declarations ---------------------- */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'),
+       url('fonts/raleway-v14-latin-regular.woff2') format('woff2'),
+       url('fonts/raleway-v14-latin-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro Regular'), local('SourceCodePro-Regular'),
+       url('fonts/source-code-pro-v11-latin-regular.woff2') format('woff2'),
+       url('fonts/source-code-pro-v11-latin-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Bitter Regular'), local('Bitter-Regular'),
+       url('fonts/bitter-v15-latin-regular.woff2') format('woff2'),
+       url('fonts/bitter-v15-latin-regular.woff') format('woff');
+}
+
+/* ---------------------- Root Variables ---------------------- */
 :root {
   --back-color: #f0f0f0;
   --text-color: rgb(0, 0, 0);
 }
 
+/* ---------------------- Global Resets ---------------------- */
 * {
   padding: 0;
   margin: 0;
@@ -14,15 +44,26 @@ html, body {
   margin: 0;
 }
 
+/* ---------------------- Body & Typography ---------------------- */
 body {
   display: flex;
   flex-direction: column;
   background-color: #f0f0f0;
   color: rgb(0, 0, 0);
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Raleway", sans-serif; /* Use Raleway by default */
   min-height: 100vh;
 }
 
+h1, h2, h3 {
+  font-family: "Bitter", serif;       /* Headings use Bitter */
+}
+
+code {
+  font-family: "Source Code Pro", monospace; /* Code uses Source Code Pro */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------------- Layout Wrappers ---------------------- */
 .wrapper {
   flex: 1 0 auto;
 }
@@ -90,6 +131,7 @@ footer {
   text-align: left;
 }
 
+/* ---------------------- Headings & Paragraphs ---------------------- */
 h1 {
   font-size: 1.5em;
   font-weight: 700;
@@ -113,35 +155,36 @@ p {
   display: block;
 }
 
+/* ---------------------- Links ---------------------- */
 a {
   color: inherit;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   color: var(--back-color);
   background-color: var(--text-color);
 }
 
-/* Make the general list rules more specific to non-blog areas */
-ul:not(.blog-post ul), 
-ol:not(.blog-post ol) {
-    margin-left: 30px;
-    margin-top: 10px;
-    line-height: 1.5em;
+/* ---------------------- Standard List Spacing ---------------------- */
+ul,
+ol {
+  margin: 1em 0;                /* Adds vertical spacing around the list */
+  padding-inline-start: 2em;    /* Indents bullets/numbers by a typical amount */
+  line-height: 1.5;             /* Ensures comfortable readability */
 }
 
-li:not(.blog-post li) {
-    margin-bottom: 5px;
+li {
+  margin-bottom: 0.5em;         /* Space between list items */
 }
 
-/* Then set explicit rules for blog posts */
-.blog-post ul, 
-.blog-post ol { 
-    margin-left: 30px;
-    margin-top: 1em; 
-    line-height: 1.5em;
+/* Optional: Blog post overrides */
+.blog-post ul,
+.blog-post ol {
+  /* Add or override any properties specific to blog posts here */
 }
 
+/* ---------------------- Columns & Responsive ---------------------- */
 .right-column p {
   margin-top: 2px;
 }
@@ -154,7 +197,6 @@ li:not(.blog-post li) {
   main {
     padding: 30px 140px 0 140px;
   }
-
   .footer-content {
     padding: 30px 130px 0 130px;
   }
@@ -164,87 +206,84 @@ li:not(.blog-post li) {
   .top-section {
     gap: 10px;
   }
-
   .profile-image {
     width: 100px;
   }
-
   footer {
     padding: 10px;
   }
-
   .footer-content {
     max-width: 100%;
     padding: 0 auto;
   }
-
   main {
     padding: 20px 10px;
   }
 }
 
 .material-icons {
-    font-size: 16px;
-    transform: scale(0.9);
-    vertical-align: middle;
+  font-size: 16px;
+  transform: scale(0.9);
+  vertical-align: middle;
 }
 
 .content-wrapper .top-section .left-column .profile-image {
-    width: 150px;
+  width: 150px;
 }
 
+/* ---------------------- Blog Posts ---------------------- */
 .blog-posts {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .post-preview {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .post-preview h4 {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .post-meta {
-    color: #666;
-    font-size: 0.9em;
-    margin-bottom: 10px;
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
 }
 
 .post-excerpt {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .blog-post {
-    margin-top: 20px;
-    line-height: 1.6;
+  margin-top: 20px;
+  line-height: 1.6;
 }
 
 .blog-post p {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .blog-post img {
-    max-width: 100%;
-    height: auto;
-    margin: 20px 0;
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
 }
 
 .post-title {
-    font-size: 1.3em;
-    margin-bottom: 5px;
+  font-size: 1.3em;
+  margin-bottom: 5px;
 }
 
 .para-break {
-    display: block;
-    margin-bottom: 1em;
+  display: block;
+  margin-bottom: 1em;
 }
 
 .svg-icon {
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    fill: currentColor;
-    vertical-align: text-bottom;
-    padding-right: 5px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+  padding-right: 5px;
 }
