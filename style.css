@@ -283,3 +283,9 @@ li {
   vertical-align: text-bottom;
   padding-right: 5px;
 }
+
+/* ---------------------- Links ---------------------- */
+.pipe-separator {
+  margin-left: 20px;
+  margin-right: 20px;
+}
