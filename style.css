@@ -291,7 +291,8 @@ li {
 }
 
 /* ---------------------- Header ---------------------- */
-.right-column p:first-child {
+/* In your CSS */
+.name-header {
   font-size: 2em;
   font-family: "Bitter", serif;
 }
