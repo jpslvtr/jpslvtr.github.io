@@ -286,6 +286,12 @@ li {
 
 /* ---------------------- Links ---------------------- */
 .pipe-separator {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+/* ---------------------- Header ---------------------- */
+.right-column p:first-child {
+  font-size: 2em;
+  font-family: "Bitter", serif;
 }
