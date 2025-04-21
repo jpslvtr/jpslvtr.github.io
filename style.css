@@ -1,4 +1,3 @@
-/* ---------------------- Font Face Declarations ---------------------- */
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
@@ -26,13 +25,11 @@
        url('fonts/bitter-v15-latin-regular.woff') format('woff');
 }
 
-/* ---------------------- Root Variables ---------------------- */
 :root {
   --back-color: #f0f0f0;
   --text-color: rgb(0, 0, 0);
 }
 
-/* ---------------------- Global Resets ---------------------- */
 * {
   padding: 0;
   margin: 0;
@@ -44,26 +41,24 @@ html, body {
   margin: 0;
 }
 
-/* ---------------------- Body & Typography ---------------------- */
 body {
   display: flex;
   flex-direction: column;
   background-color: #f0f0f0;
   color: rgb(0, 0, 0);
-  font-family: "Raleway", sans-serif; /* Use Raleway by default */
+  font-family: "Raleway", sans-serif;
   min-height: 100vh;
 }
 
 h1, h2, h3 {
-  font-family: "Bitter", serif;       /* Headings use Bitter */
+  font-family: "Bitter", serif;
 }
 
 code {
-  font-family: "Source Code Pro", monospace; /* Code uses Source Code Pro */
+  font-family: "Source Code Pro", monospace;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---------------------- Layout Wrappers ---------------------- */
 .wrapper {
   flex: 1 0 auto;
 }
@@ -130,7 +125,6 @@ footer {
   text-align: left;
 }
 
-/* ---------------------- Headings & Paragraphs ---------------------- */
 h1 {
   font-size: 1.5em;
   font-weight: 700;
@@ -154,7 +148,6 @@ p {
   display: block;
 }
 
-/* ---------------------- Links ---------------------- */
 a {
   color: inherit;
 }
@@ -165,25 +158,20 @@ a:focus {
   background-color: var(--text-color);
 }
 
-/* ---------------------- Standard List Spacing ---------------------- */
-ul,
-ol {
-  margin: 1em 0;                /* Adds vertical spacing around the list */
-  padding-inline-start: 2em;    /* Indents bullets/numbers by a typical amount */
-  line-height: 1.5;             /* Ensures comfortable readability */
+ul, ol {
+  margin: 1em 0;
+  padding-inline-start: 2em;
+  line-height: 1.5;
 }
 
 li {
-  margin-bottom: 0.5em;         /* Space between list items */
+  margin-bottom: 0.5em;
 }
 
-/* Optional: Blog post overrides */
 .blog-post ul,
 .blog-post ol {
-  /* Add or override any properties specific to blog posts here */
 }
 
-/* ---------------------- Columns & Responsive ---------------------- */
 .right-column p {
   margin-top: 2px;
 }
@@ -239,7 +227,6 @@ li {
   width: 150px;
 }
 
-/* ---------------------- Blog Posts ---------------------- */
 .blog-posts {
   margin-top: 20px;
 }
@@ -292,14 +279,11 @@ li {
   padding-right: 5px;
 }
 
-/* ---------------------- Links ---------------------- */
 .pipe-separator {
   margin-left: 15px;
   margin-right: 15px;
 }
 
-/* ---------------------- Header ---------------------- */
-/* In your CSS */
 .name-header {
   font-size: 2em;
   font-family: "Bitter", serif;
@@ -308,4 +292,20 @@ li {
 .page-header {
   font-size: 1.5em;
   font-family: "Bitter", serif;
+}
+
+sup {
+  font-size: 0.7em;
+  margin-left: 1px;
+  vertical-align: super;
+}
+
+figure {
+  text-align: center;
+  margin: 20px 0;
+}
+
+figcaption {
+  font-style: italic;
+  font-size: 0.9em;
 }
