@@ -279,13 +279,13 @@ li {
   padding-right: 5px;
 }
 
-.pipe-separator {
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
 .name-header {
   font-size: 2em;
+  font-family: "Bitter", serif;
+}
+
+.text-header {
+  font-size: inherit;
   font-family: "Bitter", serif;
 }
 
@@ -309,3 +309,4 @@ figcaption {
   font-style: italic;
   font-size: 0.9em;
 }
+
