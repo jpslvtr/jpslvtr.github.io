@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>James Park</title>
+    <link rel="icon" type="image/png" href="../img/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P559682GZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1P559682GZ');
+    </script>
+
+    <style>
+        .year-section {
+            margin: 40px 0;
+        }
+
+        .year-header {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .book-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .book-cover {
+            width: 120px;
+            height: 180px;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .book-cover.error {
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .book-title {
+            font-size: 0.9em;
+            font-weight: 500;
+            margin: 5px 0;
+            line-height: 1.3;
+        }
+
+        .book-author {
+            font-size: 0.8em;
+            color: #666;
+            margin: 2px 0;
+        }
+
+        @media (max-width: 768px) {
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 15px;
+            }
+
+            .book-cover {
+                width: 100px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <p class="page-header">All Books</p>
+            <br>
+        </header>
+        <hr>
+        <main>
+            <div class="back-link">
+                <a href="../index.html" style="text-decoration: none;">← Back</a>
+            </div>
+            <div id="yearsContainer"></div>
+        </main>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 James Park</p>
+            <br>
+        </div>
+    </footer>
+
+    <script>
+        const books = [
+            { title: "The Secret History", author: "Tartt, Donna", isbn: "1400031702", date: "10/19/25" },
+            { title: "After: A Doctor Explores What Near-Death Experiences Reveal about Life and Beyond", author: "Greyson, Bruce", isbn: "1250263034", date: "4/17/25" },
+            { title: "Facebook: The Inside Story", author: "Levy, Steven", isbn: "0735213151", date: "6/23/25" },
+            { title: "The Technological Republic: Hard Power, Soft Belief, and the Future of the West", author: "Karp, Alexander C.", isbn: "0593798694", date: "5/27/25" },
+            { title: "The Mathematical Universe: An Alphabetical Journey Through the Great Proofs, Problems, and Personalities", author: "Dunham, William", isbn: "0471176613", date: "5/27/25" },
+            { title: "Synchronicity: The Epic Quest to Understand the Quantum Nature of Cause and Effect", author: "Halpern, Paul", isbn: "1541673638", date: "5/22/25" },
+            { title: "What I Believe", author: "Tolstoy, Leo", isbn: "1402185235", date: "5/21/25" },
+            { title: "A Confession", author: "Tolstoy, Leo", isbn: "1598184717", date: "5/21/25" },
+            { title: "The Death of Ivan Ilych", author: "Tolstoy, Leo", isbn: "", date: "5/21/25" },
+            { title: "She Said: Breaking the Sexual Harassment Story That Helped Ignite a Movement", author: "Kantor, Jodi", isbn: "0525560343", date: "5/8/25" },
+            { title: "Creativity, Inc.: Overcoming the Unseen Forces That Stand in the Way of True Inspiration", author: "Catmull, Ed", isbn: "0812993012", date: "4/17/25" },
+            { title: "Evolution of Desire: A Life of René Girard (Studies in Violence, Mimesis & Culture)", author: "Haven, Cynthia L.", isbn: "1611862833", date: "4/17/25" },
+            { title: "My Big TOE - Awakening, Discovey, Inner Workings : The Complete Trilogy Unifying Philosophy, Physics, and Metaphysics", author: "Campbell, Thomas", isbn: "0972509461", date: "4/17/25" },
+            { title: "The Number Devil: A Mathematical Adventure", author: "Enzensberger, Hans Magnus", isbn: "0805062998", date: "4/17/25" },
+            { title: "The Armageddon Conspiracy", author: "Hockney, Mike", isbn: "1847994741", date: "4/17/25" },
+            { title: "Spies, Lies, and Algorithms: The History and Future of American Intelligence", author: "Zegart, Amy B.", isbn: "0691147132", date: "4/17/25" },
+            { title: "The Mass Psychology of Fascism", author: "Reich, Wilhelm", isbn: "0374508844", date: "4/17/25" },
+            { title: "The Revolt of the Public and the Crisis of Authority in the New Millennium", author: "Gurri, Martin", isbn: "1732265143", date: "4/17/25" },
+            { title: "The Killer Across the Table: Unlocking the Secrets of Serial Killers and Predators with the FBI's Original Mindhunter", author: "Douglas, John E.", isbn: "0062939505", date: "4/17/25" },
+            { title: "Quadrivium: The Four Classical Liberal Arts of Number, Geometry, Music, & Cosmology", author: "Martineau, John", isbn: "0802778135", date: "4/17/25" },
+            { title: "The Art of Adaptation", author: "Seger, Linda", isbn: "0805016260", date: "4/17/25" },
+            { title: "Passport to Magonia: On UFOs, Folklore, and Parallel Worlds", author: "Vallée, Jacques F.", isbn: "0809237962", date: "4/17/25" },
+            { title: "Become What You Are", author: "Watts, Alan W.", isbn: "1570629404", date: "4/17/25" },
+            { title: "Running in Silence: My Drive for Perfection and the Eating Disorder That Fed It", author: "Steil, Rachael Rose", isbn: "1633933407", date: "4/17/25" },
+            { title: "IQ (Book One: Independence Hall)", author: "Smith, Roland", isbn: "", date: "4/17/25" },
+            { title: "How to Die:  An Ancient Guide to the End of Life", author: "Seneca, Seneca", isbn: "0691175578", date: "4/17/25" },
+            { title: "Maps of Meaning: The Architecture of Belief", author: "Peterson, Jordan B.", isbn: "0415922224", date: "4/17/25" },
+            { title: "Life of Pi", author: "Martel, Yann", isbn: "0770430074", date: "4/17/25" },
+            { title: "Letters to a Young Contrarian", author: "Hitchens, Christopher", isbn: "0465030335", date: "4/17/25" },
+            { title: "Arguably: Selected Essays", author: "Hitchens, Christopher", isbn: "0771041411", date: "4/17/25" },
+            { title: "Work by Thich Nhat Hanh (2013) Paperback", author: "Hanh, Thich Nhat", isbn: "", date: "4/17/25" },
+            { title: "Found (The Missing, #1)", author: "Haddix, Margaret Peterson", isbn: "1416954171", date: "4/17/25" },
+            { title: "Quantum Physics and Ultimate Reality: Mystical Writings of Great Physicists", author: "Green, Michael", isbn: "", date: "4/17/25" },
+            { title: "Natural Goodness", author: "Foot, Philippa", isbn: "019926547X", date: "4/17/25" },
+            { title: "Introduction to Algorithms", author: "Cormen, Thomas H.", isbn: "0262032937", date: "4/17/25" },
+            { title: "The Fall", author: "Camus, Albert", isbn: "0679720227", date: "4/17/25" },
+            { title: "Angel: How to Invest in Technology Startups-Timeless Advice from an Angel Investor Who Turned $100,000 into $100,000,000", author: "Calacanis, Jason", isbn: "0062560700", date: "4/17/25" },
+            { title: "Simulacra and Simulation", author: "Baudrillard, Jean", isbn: "0472065211", date: "4/17/25" },
+            { title: "The Challenger Customer: Selling to the Hidden Influencer Who Can Multiply Your Results", author: "Adamson, Brent", isbn: "0698406184", date: "4/17/25" },
+            { title: "Tied In: The Business, History and Craft of Media Tie-In Writing", author: "Goldberg, Lee", isbn: "1453716106", date: "4/17/25" },
+            { title: "Slow Productivity: The Lost Art of Accomplishment Without Burnout", author: "Newport, Cal", isbn: "0593544854", date: "4/7/24" },
+            { title: "The Goldfinch", author: "Tartt, Donna", isbn: "0316055433", date: "3/25/24" },
+            { title: "The House of the Scorpion (Matteo Alacran, #1)", author: "Farmer, Nancy", isbn: "0689852231", date: "11/23/24" },
+            { title: "The Challenger Sale: Taking Control of the Customer Conversation", author: "Dixon, Matthew", isbn: "1591844355", date: "9/5/24" },
+            { title: "Death's End (Remembrance of Earth's Past, #3)", author: "Cixin, Liu", isbn: "0765377101", date: "6/17/24" },
+            { title: "The Dark Forest (Remembrance of Earth's Past, #2)", author: "Cixin, Liu", isbn: "", date: "6/17/24" },
+            { title: "Copenhagen", author: "Frayn, Michael", isbn: "", date: "6/17/24" },
+            { title: "The Time of Our Singing", author: "Powers, Richard", isbn: "0099453835", date: "6/17/24" },
+            { title: "Dead-End Memories: Stories", author: "Yoshimoto, Banana", isbn: "1640093699", date: "6/17/24" },
+            { title: "A Thousand Years of Good Prayers", author: "Li, Yiyun", isbn: "081297333X", date: "6/17/24" },
+            { title: "Siddhartha: Hermann Hesse", author: "Hesse, Hermann", isbn: "", date: "6/17/24" },
+            { title: "Interpreter of Maladies Stories by Jhumpa Lahiri", author: "Lahiri, Jhumpa", isbn: "", date: "6/17/24" },
+            { title: "What If We Were Somewhere Else", author: "Fox, Wendy J.", isbn: "1951631056", date: "6/17/24" },
+            { title: "The World's Religions", author: "Smith, Huston", isbn: "", date: "6/17/24" },
+            { title: "Seize the Day", author: "Bellow, Saul", isbn: "0142437611", date: "6/17/24" },
+            { title: "The Love of the Last Tycoon", author: "Fitzgerald, F. Scott", isbn: "0020199856", date: "4/12/24" },
+            { title: "Miramar by Naguib Mahfouz (1993-01-14)", author: "Mahfouz, Naguib", isbn: "", date: "6/17/24" },
+            { title: "The Essence of Shinto: Japan's Spiritual Heart", author: "Yamakage, Motohisa", isbn: "4770030444", date: "6/17/24" },
+            { title: "Stories of Your Life and Others", author: "Chiang, Ted", isbn: "0330426648", date: "6/17/24" },
+            { title: "Buffett: The Making of an American Capitalist", author: "Lowenstein, Roger", isbn: "0385484917", date: "8/23/23" },
+            { title: "Code: The Hidden Language of Computer Hardware and Software", author: "Petzold, Charles", isbn: "0735611319", date: "8/23/23" },
+            { title: "Harry Potter and the Deathly Hallows (Harry Potter, #7)", author: "Rowling, J.K.", isbn: "", date: "7/16/23" },
+            { title: "The Three-Body Problem (Remembrance of Earth's Past, #1)", author: "Cixin, Liu", isbn: "", date: "8/4/23" },
+            { title: "A Man of Misconceptions: The Life of an Eccentric in an Age of Change", author: "Glassie, John", isbn: "1594488711", date: "7/5/23" },
+            { title: "The Autobiography of Johann Wolfgang Goethe (Volume 1)", author: "Goethe, Johann Wolfgang von", isbn: "0226300579", date: "7/5/23" },
+            { title: "Company Of One: Why Staying Small Is the Next Big Thing for Business", author: "Jarvis, Paul", isbn: "1328972356", date: "6/13/23" },
+            { title: "Bullshit Jobs: A Theory", author: "Graeber, David", isbn: "150114331X", date: "5/31/23" },
+            { title: "None Dare Call It Conspiracy", author: "Allen, Gary", isbn: "0944379532", date: "5/31/23" },
+            { title: "Harry Potter and the Half-Blood Prince (Harry Potter, #6)", author: "Rowling, J.K.", isbn: "", date: "5/13/23" },
+            { title: "Secrets of Sand Hill Road: Venture Capital and How to Get It", author: "Kupor, Scott", isbn: "059308358X", date: "4/23/23" },
+            { title: "Harry Potter and the Goblet of Fire (Harry Potter, #4)", author: "Rowling, J.K.", isbn: "0439139597", date: "4/11/23" },
+            { title: "Extreme Ownership: How U.S. Navy SEALs Lead and Win", author: "Willink, Jocko", isbn: "1250067057", date: "2/28/23" },
+            { title: "Harry Potter and the Prisoner of Azkaban (Harry Potter, #3)", author: "Rowling, J.K.", isbn: "043965548X", date: "2/28/23" },
+            { title: "Harry Potter and the Chamber of Secrets (Harry Potter, #2)", author: "Rowling, J.K.", isbn: "", date: "2/26/23" },
+            { title: "Never Finished: Unshackle Your Mind and Win the War Within", author: "Goggins, David", isbn: "154453406X", date: "2/13/23" },
+            { title: "Born to Run 2: The Ultimate Training Guide", author: "McDougall, Christopher", isbn: "1524712345", date: "1/1/23" },
+            { title: "11/22/63", author: "King, Stephen", isbn: "1451627289", date: "12/28/22" },
+            { title: "The Lucifer Effect: Understanding How Good People Turn Evil", author: "Zimbardo, Philip G.", isbn: "1400064112", date: "12/28/22" },
+            { title: "Our Mathematical Universe: My Quest for the Ultimate Nature of Reality", author: "Tegmark, Max", isbn: "1846144760", date: "12/28/22" },
+            { title: "Harry Potter and the Philosopher's Stone (Harry Potter, #1)", author: "Rowling, J.K.", isbn: "", date: "12/3/22" },
+            { title: "The Four Horsemen: The Conversation That Sparked an Atheist Revolution", author: "Hitchens, Christopher", isbn: "0525511962", date: "12/28/22" },
+            { title: "Justice: What's the Right Thing to Do?", author: "Sandel, Michael J.", isbn: "0374180652", date: "12/28/22" },
+            { title: "Fermat's Enigma", author: "Singh, Simon", isbn: "0385493622", date: "12/28/22" },
+            { title: "In Pursuit of the Traveling Salesman: Mathematics at the Limits of Computation", author: "Cook, William J.", isbn: "0691152705", date: "12/28/22" },
+            { title: "The Hitchhiker's Guide to the Galaxy (The Hitchhiker's Guide to the Galaxy, #1)", author: "Adams, Douglas", isbn: "", date: "12/28/22" },
+            { title: "Contact", author: "Sagan, Carl", isbn: "2266079999", date: "12/28/22" },
+            { title: "The Founders: The Story of Paypal and the Entrepreneurs Who Shaped Silicon Valley", author: "Soni, Jimmy", isbn: "1501197266", date: "12/28/22" },
+            { title: "Basic Economics: A Citizen's Guide to the Economy", author: "Sowell, Thomas", isbn: "0465081452", date: "12/28/22" },
+            { title: "The Information: A History, a Theory, a Flood", author: "Gleick, James", isbn: "0375423729", date: "12/28/22" },
+            { title: "The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography", author: "Singh, Simon", isbn: "0385495323", date: "12/28/22" },
+            { title: "Harry Potter and the Order of the Phoenix (Harry Potter, #5)", author: "Rowling, J.K.", isbn: "0439686520", date: "12/28/22" },
+            { title: "Sea Stories: My Life in Special Operations", author: "McRaven, William H.", isbn: "1538715538", date: "12/28/22" },
+            { title: "Thinking, Fast and Slow", author: "Kahneman, Daniel", isbn: "0374275637", date: "12/28/22" },
+            { title: "The Stranger Beside Me: Ted Bundy: The Shocking Inside Story", author: "Rule, Ann", isbn: "0451203267", date: "12/28/22" },
+            { title: "The Meritocracy Trap: How America's Foundational Myth Feeds Inequality, Dismantles the Middle Class, and Devours the Elite", author: "Markovits, Daniel", isbn: "0735221995", date: "12/28/22" },
+            { title: "The Long Walk: The True Story of a Trek to Freedom", author: "Rawicz, Slavomir", isbn: "1592289444", date: "12/28/22" },
+            { title: "Survival of the Prettiest: The Science of Beauty", author: "Etcoff, Nancy L.", isbn: "0385479425", date: "12/28/22" },
+            { title: "Being You: A New Science of Consciousness", author: "Seth, Anil", isbn: "0571337708", date: "12/28/22" },
+            { title: "The Myth of Sisyphus", author: "Camus, Albert", isbn: "0141182008", date: "12/28/22" },
+            { title: "Eternity: God, Soul, New Physics", author: "Trevelyan, Trevelyan", isbn: "", date: "12/28/22" },
+            { title: "One Up On Wall Street: How to Use What You Already Know to Make Money in the Market", author: "Lynch, Peter", isbn: "0743200403", date: "12/28/22" },
+            { title: "As a Man Thinketh", author: "Allen, James", isbn: "1585425648", date: "12/28/22" },
+            { title: "The Spy and the Traitor: The Greatest Espionage Story of the Cold War", author: "Macintyre, Ben", isbn: "0771060335", date: "12/28/22" },
+            { title: "A Mind at Play: How Claude Shannon Invented the Information Age", author: "Soni, Jimmy", isbn: "1476766681", date: "12/28/22" },
+            { title: "How to Become a Straight-A Student", author: "Newport, Cal", isbn: "0767922719", date: "12/28/22" },
+            { title: "No Longer Human", author: "Dazai, Osamu", isbn: "", date: "12/28/22" },
+            { title: "Discrimination and Disparities", author: "Sowell, Thomas", isbn: "", date: "12/28/22" },
+            { title: "In Cold Blood", author: "Capote, Truman", isbn: "0679745580", date: "12/28/22" },
+            { title: "The Double Helix", author: "Watson, James D.", isbn: "0451037707", date: "8/15/22" },
+            { title: "Never Split the Difference: Negotiating As If Your Life Depended On It", author: "Voss, Chris", isbn: "0062407805", date: "8/15/22" },
+            { title: "The Mathematical Theory of Communication", author: "Shannon, Claude", isbn: "0252725484", date: "8/15/22" },
+            { title: "Behave: The Biology of Humans at Our Best and Worst", author: "Sapolsky, Robert M.", isbn: "1594205078", date: "8/15/22" },
+            { title: "Finding Ultra: Rejecting Middle Age, Becoming One of the World's Fittest Men, and Discovering Myself", author: "Roll, Rich", isbn: "0307952207", date: "8/15/22" },
+            { title: "Ishmael (Ishmael, #1)", author: "Quinn, Daniel", isbn: "", date: "8/15/22" },
+            { title: "12 Rules for Life: An Antidote to Chaos", author: "Peterson, Jordan B.", isbn: "0345816021", date: "8/15/22" },
+            { title: "The Road to Reality: A Complete Guide to the Laws of the Universe", author: "Penrose, Roger", isbn: "0679776311", date: "8/15/22" },
+            { title: "Born to Run: A Hidden Tribe, Superathletes, and the Greatest Race the World Has Never Seen", author: "McDougall, Christopher", isbn: "", date: "8/15/22" },
+            { title: "Can't Hurt Me: Master Your Mind and Defy the Odds", author: "Goggins, David", isbn: "1544512260", date: "8/15/22" },
+            { title: "The Five People You Meet in Heaven", author: "Albom, Mitch", isbn: "0786868716", date: "8/16/22" },
+            { title: "Gödel, Escher, Bach: An Eternal Golden Braid", author: "Hofstadter, Douglas R.", isbn: "0465026567", date: "8/15/22" },
+            { title: "The Last Lecture", author: "Pausch, Randy", isbn: "", date: "8/15/22" },
+            { title: "It's Kind of a Funny Story", author: "Vizzini, Ned", isbn: "078685197X", date: "8/15/22" },
+            { title: "A Short History of Nearly Everything", author: "Bryson, Bill", isbn: "076790818X", date: "8/15/22" },
+            { title: "Why Nations Fail: The Origins of Power, Prosperity, and Poverty", author: "Acemoğlu, Daron", isbn: "0307719219", date: "8/15/22" },
+            { title: "The Stranger", author: "Camus, Albert", isbn: "", date: "8/15/22" },
+            { title: "Mere Christianity", author: "Lewis, C.S.", isbn: "", date: "8/15/22" },
+            { title: "Scale: The Universal Laws of Growth, Innovation, Sustainability, and the Pace of Life in Organisms, Cities, Economies, and Companies", author: "West, Geoffrey B.", isbn: "1594205582", date: "8/15/22" },
+            { title: "Man's Search for Meaning", author: "Frankl, Viktor E.", isbn: "080701429X", date: "8/15/22" },
+            { title: "The Righteous Mind: Why Good People Are Divided by Politics and Religion", author: "Haidt, Jonathan", isbn: "", date: "8/15/22" },
+            { title: "Lone Survivor: The Eyewitness Account of Operation Redwing and the Lost Heroes of SEAL Team 10", author: "Luttrell, Marcus", isbn: "0316067598", date: "8/15/22" },
+            { title: "Deep Work: Rules for Focused Success in a Distracted World", author: "Newport, Cal", isbn: "1455586692", date: "8/15/22" },
+            { title: "Zero to One: Notes on Startups, or How to Build the Future", author: "Thiel, Peter", isbn: "0804139296", date: "8/15/22" },
+            { title: "The Brothers Karamazov", author: "Dostoevsky, Fyodor", isbn: "0374528373", date: "8/15/22" },
+            { title: "Things Hidden Since the Foundation of the World", author: "Girard, René", isbn: "0804722153", date: "8/15/22" }
+        ];
+
+        // Convert date strings to Date objects and extract year
+        books.forEach(book => {
+            const parts = book.date.split('/');
+            book.dateObj = new Date(2000 + parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
+            book.year = 2000 + parseInt(parts[2]);
+        });
+
+        // Sort by date (most recent first)
+        books.sort((a, b) => b.dateObj - a.dateObj);
+
+        // Group books by year
+        const booksByYear = {};
+        books.forEach(book => {
+            if (!booksByYear[book.year]) {
+                booksByYear[book.year] = [];
+            }
+            booksByYear[book.year].push(book);
+        });
+
+        // Get years in descending order
+        const years = Object.keys(booksByYear).sort((a, b) => b - a);
+
+        // Generate HTML
+        const container = document.getElementById('yearsContainer');
+        years.forEach(year => {
+            // Create year section
+            const yearSection = document.createElement('div');
+            yearSection.className = 'year-section';
+
+            const yearHeader = document.createElement('h2');
+            yearHeader.className = 'year-header';
+            yearHeader.textContent = year;
+            yearSection.appendChild(yearHeader);
+
+            // Create grid for this year's books
+            const grid = document.createElement('div');
+            grid.className = 'books-grid';
+
+            booksByYear[year].forEach(book => {
+                const bookItem = document.createElement('div');
+                bookItem.className = 'book-item';
+
+                const img = document.createElement('img');
+                img.className = 'book-cover';
+
+                if (book.isbn) {
+                    img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
+                    img.alt = book.title;
+                    img.onerror = function () {
+                        this.style.display = 'none';
+                        const placeholder = document.createElement('div');
+                        placeholder.className = 'book-cover error';
+                        placeholder.textContent = 'No cover';
+                        this.parentNode.insertBefore(placeholder, this);
+                    };
+                } else {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'book-cover error';
+                    placeholder.textContent = 'No cover';
+                    bookItem.appendChild(placeholder);
+                }
+
+                const title = document.createElement('div');
+                title.className = 'book-title';
+                title.textContent = book.title;
+
+                const author = document.createElement('div');
+                author.className = 'book-author';
+                author.textContent = book.author;
+
+                if (book.isbn) {
+                    bookItem.appendChild(img);
+                }
+                bookItem.appendChild(title);
+                bookItem.appendChild(author);
+
+                grid.appendChild(bookItem);
+            });
+
+            yearSection.appendChild(grid);
+            container.appendChild(yearSection);
+        });
+    </script>
+</body>
+
+</html>
