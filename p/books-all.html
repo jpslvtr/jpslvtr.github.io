@@ -249,7 +249,6 @@
             { title: "Things Hidden Since the Foundation of the World", author: "Girard, René", isbn: "0804722153", date: "8/15/22" }
         ];
 
-        // Convert date strings to Date objects and extract year
         books.forEach(book => {
             const parts = book.date.split('/');
             book.dateObj = new Date(2000 + parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
@@ -268,13 +267,10 @@
             booksByYear[book.year].push(book);
         });
 
-        // Get years in descending order
         const years = Object.keys(booksByYear).sort((a, b) => b - a);
 
-        // Generate HTML
         const container = document.getElementById('yearsContainer');
         years.forEach(year => {
-            // Create year section
             const yearSection = document.createElement('div');
             yearSection.className = 'year-section';
 
@@ -283,7 +279,6 @@
             yearHeader.textContent = year;
             yearSection.appendChild(yearHeader);
 
-            // Create grid for this year's books
             const grid = document.createElement('div');
             grid.className = 'books-grid';
 
