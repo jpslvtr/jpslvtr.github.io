@@ -112,6 +112,60 @@
     </footer>
 
     <script>
+        // Mapping of book titles to manual cover images
+        const manualCovers = {
+            "Harry Potter and the Order of the Phoenix": "order-of-the-phoenix.jpg",
+            "12 Rules for Life": "12-rules-for-life.jpg",
+            "A Mind at Play": "a-mind-at-play.jpg",
+            "Being You": "being-you.jpg",
+            "Born to Run": "born-to-run.jpg",
+            "Can't Hurt Me": "cant-hurt-me.jpg",
+            "Harry Potter and the Chamber of Secrets": "chamber-of-secrets.jpg",
+            "Copenhagen": "copenhagen.jpg",
+            "Harry Potter and the Deathly Hallows": "deathly-hallows.jpg",
+            "Discrimination and Disparities": "discrimination-and-disparities.jpg",
+            "Eternity": "eternity.jpg",
+            "Evolution of Desire": "evolution-of-desire.jpg",
+            "Harry Potter and the Half-Blood Prince": "half-blood-prince.jpg",
+            "How to Die": "how-to-die.jpg",
+            "In Pursuit of the Traveling Salesman": "in-pursuit-of-the-traveling-salesman.jpg",
+            "Interpreter of Maladies": "interpreter-of-maladies.jpg",
+            "IQ (Independence Hall)": "iq-independence-hall.jpg",
+            "Ishmael": "ishmael.jpg",
+            "Mere Christianity": "mere-christianity.jpg",
+            "Miramar": "miramar.jpg",
+            "No Longer Human": "no-longer-human.jpg",
+            "Harry Potter and the Prisoner of Azkaban": "prisoner-of-azkaban.jpg",
+            "Finding Ultra": "rich-roll.jpg",
+            "Running in Silence": "running-in-silence.jpg",
+            "Sea Stories": "sea-stories.jpg",
+            "Secrets of Sand Hill Road": "secrets-of-sand-hill-road.jpg",
+            "Siddhartha": "siddhartha.jpg",
+            "Harry Potter and the Sorcerer's Stone": "sorcerers-stone.jpg",
+            "Synchronicity": "synchronicity.jpg",
+            "The Challenger Customer": "the-challeger-customer.jpg",
+            "The Dark Forest (Remembrance of Earth's Past)": "the-dark-forest.jpg",
+            "The Death of Ivan Ilych": "the-death-of-ivan-ilyich.jpg",
+            "The Double Helix": "the-double-helix.jpg",
+            "The Five People You Meet in Heaven": "the-five-people-you-meet-in-heaven.jpg",
+            "The Founders": "the-founders.jpg",
+            "The Four Horsemen": "the-four-horsemen.jpg",
+            "The Hitchhiker's Guide to the Galaxy": "the-hitchhikers-guide-to-the-galaxy.jpg",
+            "The Killer Across the Table": "the-killer-across-the-table.jpg",
+            "The Last Lecture": "the-last-lecture.jpg",
+            "The Meritocracy Trap": "the-meritocracy-trap.jpg",
+            "The Righteous Mind": "the-righteous-mind.jpg",
+            "The Spy and the Traitor": "the-spy-and-the-traitor.jpg",
+            "The Stranger": "the-stranger.jpg",
+            "The Three-Body Problem (Remembrance of Earth's Past)": "the-three-body-problem.jpg",
+            "The Time of Our Singing": "the-time-of-our-singing.jpg",
+            "The World's Religions": "the-worlds-religions.jpg",
+            "Thinking, Fast and Slow": "thinking-fast-and-slow.jpg",
+            "Tied In": "tied-in.jpg",
+            "Work": "work.jpg",
+            "The Armageddon Conspiracy": "the-armageddon-conspiracy.jpg"
+        };
+
         const books = [
             { title: "The Secret History", author: "Tartt, Donna", isbn: "1400031702", date: "10/19/25" },
             { title: "After", author: "Greyson, Bruce", isbn: "1250263034", date: "4/17/25" },
@@ -124,7 +178,7 @@
             { title: "The Death of Ivan Ilych", author: "Tolstoy, Leo", isbn: "", date: "5/21/25" },
             { title: "She Said", author: "Kantor, Jodi", isbn: "0525560343", date: "5/8/25" },
             { title: "Creativity, Inc.", author: "Catmull, Ed", isbn: "0812993012", date: "4/17/25" },
-            { title: "Evolution of Desire: A Life of René Girard", author: "Haven, Cynthia L.", isbn: "1611862833", date: "4/17/25" },
+            { title: "Evolution of Desire", author: "Haven, Cynthia L.", isbn: "1611862833", date: "4/17/25" },
             { title: "The Number Devil", author: "Enzensberger, Hans Magnus", isbn: "0805062998", date: "4/17/25" },
             { title: "The Armageddon Conspiracy", author: "Hockney, Mike", isbn: "1847994741", date: "4/17/25" },
             { title: "Spies, Lies, and Algorithms", author: "Zegart, Amy B.", isbn: "0691147132", date: "4/17/25" },
@@ -137,19 +191,19 @@
             { title: "Become What You Are", author: "Watts, Alan W.", isbn: "1570629404", date: "4/17/25" },
             { title: "Running in Silence", author: "Steil, Rachael Rose", isbn: "1633933407", date: "4/17/25" },
             { title: "IQ (Independence Hall)", author: "Smith, Roland", isbn: "", date: "4/17/25" },
-            { title: "How to Die", author: "Seneca, Seneca", isbn: "0691175578", date: "4/17/25" },
+            { title: "How to Die", author: "Seneca", isbn: "0691175578", date: "4/17/25" },
             { title: "Maps of Meaning", author: "Peterson, Jordan B.", isbn: "0415922224", date: "4/17/25" },
             { title: "Life of Pi", author: "Martel, Yann", isbn: "0770430074", date: "4/17/25" },
             { title: "Letters to a Young Contrarian", author: "Hitchens, Christopher", isbn: "0465030335", date: "4/17/25" },
             { title: "Arguably", author: "Hitchens, Christopher", isbn: "0771041411", date: "4/17/25" },
-            { title: "Work", author: "Hanh, Thich Nhat", isbn: "", date: "4/17/25" },
+            { title: "Work", author: "Hanh, Thich Nhat", isbn: "", date: "4/17/22" },
             { title: "Found (The Missing)", author: "Haddix, Margaret Peterson", isbn: "1416954171", date: "4/17/25" },
             { title: "Natural Goodness", author: "Foot, Philippa", isbn: "019926547X", date: "4/17/25" },
             { title: "Introduction to Algorithms", author: "Cormen, Thomas H.", isbn: "0262032937", date: "4/17/25" },
             { title: "The Fall", author: "Camus, Albert", isbn: "0679720227", date: "4/17/25" },
             { title: "Simulacra and Simulation", author: "Baudrillard, Jean", isbn: "0472065211", date: "4/17/25" },
             { title: "The Challenger Customer", author: "Adamson, Brent", isbn: "0698406184", date: "4/17/25" },
-            { title: "Tied In: The Business, History and Craft of Media Tie-In Writing", author: "Goldberg, Lee", isbn: "1453716106", date: "4/17/25" },
+            { title: "Tied In", author: "Goldberg, Lee", isbn: "1453716106", date: "4/17/25" },
             { title: "Slow Productivity", author: "Newport, Cal", isbn: "0593544854", date: "4/7/24" },
             { title: "The Goldfinch", author: "Tartt, Donna", isbn: "0316055433", date: "3/25/24" },
             { title: "The House of the Scorpion (Matteo Alacran)", author: "Farmer, Nancy", isbn: "0689852231", date: "11/23/24" },
@@ -160,16 +214,16 @@
             { title: "The Time of Our Singing", author: "Powers, Richard", isbn: "0099453835", date: "6/17/24" },
             { title: "Dead-End Memories", author: "Yoshimoto, Banana", isbn: "1640093699", date: "6/17/24" },
             { title: "A Thousand Years of Good Prayers", author: "Li, Yiyun", isbn: "081297333X", date: "6/17/24" },
-            { title: "Siddhartha: Hermann Hesse", author: "Hesse, Hermann", isbn: "", date: "6/17/24" },
-            { title: "Interpreter of Maladies Stories", author: "Lahiri, Jhumpa", isbn: "", date: "6/17/24" },
+            { title: "Siddhartha", author: "Hesse, Hermann", isbn: "", date: "6/17/24" },
+            { title: "Interpreter of Maladies", author: "Lahiri, Jhumpa", isbn: "", date: "6/17/24" },
             { title: "What If We Were Somewhere Else", author: "Fox, Wendy J.", isbn: "1951631056", date: "6/17/24" },
             { title: "The World's Religions", author: "Smith, Huston", isbn: "", date: "6/17/24" },
             { title: "Seize the Day", author: "Bellow, Saul", isbn: "0142437611", date: "6/17/24" },
             { title: "The Love of the Last Tycoon", author: "Fitzgerald, F. Scott", isbn: "0020199856", date: "4/12/24" },
-            { title: "Miramar by Naguib Mahfouz", author: "Mahfouz, Naguib", isbn: "", date: "6/17/24" },
+            { title: "Miramar", author: "Mahfouz, Naguib", isbn: "", date: "6/17/24" },
             { title: "The Essence of Shinto", author: "Yamakage, Motohisa", isbn: "4770030444", date: "6/17/24" },
             { title: "Stories of Your Life and Others", author: "Chiang, Ted", isbn: "0330426648", date: "6/17/24" },
-            { title: "Buffett: The Making of an American Capitalist", author: "Lowenstein, Roger", isbn: "0385484917", date: "8/23/23" },
+            { title: "Buffett", author: "Lowenstein, Roger", isbn: "0385484917", date: "8/23/23" },
             { title: "Code", author: "Petzold, Charles", isbn: "0735611319", date: "8/23/23" },
             { title: "Harry Potter and the Deathly Hallows", author: "Rowling, J.K.", isbn: "", date: "7/16/23" },
             { title: "The Three-Body Problem (Remembrance of Earth's Past)", author: "Cixin, Liu", isbn: "", date: "8/4/23" },
@@ -189,8 +243,8 @@
             { title: "11/22/63", author: "King, Stephen", isbn: "1451627289", date: "07/28/25" },
             { title: "The Lucifer Effect", author: "Zimbardo, Philip G.", isbn: "1400064112", date: "12/28/22" },
             { title: "Our Mathematical Universe", author: "Tegmark, Max", isbn: "1846144760", date: "12/28/22" },
-            { title: "Harry Potter and the Philosopher's Stone", author: "Rowling, J.K.", isbn: "", date: "12/3/22" },
-            { title: "The Four Horsemen", author: "Hitchens, Christopher", isbn: "0525511962", date: "12/28/22" },
+            { title: "Harry Potter and the Sorcerer's Stone", author: "Rowling, J.K.", isbn: "", date: "12/3/22" },
+            { title: "The Four Horsemen", author: "Dawkins, Richard; Dennett, Daniel; Harris, Sam; Hitchens, Christopher", isbn: "0525511962", date: "12/28/22" },
             { title: "Justice", author: "Sandel, Michael J.", isbn: "0374180652", date: "12/28/22" },
             { title: "Fermat's Enigma", author: "Singh, Simon", isbn: "0385493622", date: "12/28/22" },
             { title: "In Pursuit of the Traveling Salesman", author: "Cook, William J.", isbn: "0691152705", date: "12/28/22" },
@@ -209,7 +263,7 @@
             { title: "Survival of the Prettiest", author: "Etcoff, Nancy L.", isbn: "0385479425", date: "12/28/22" },
             { title: "Being You", author: "Seth, Anil", isbn: "0571337708", date: "12/28/22" },
             { title: "The Myth of Sisyphus", author: "Camus, Albert", isbn: "0141182008", date: "12/28/22" },
-            { title: "Eternity", author: "Trevelyan, Trevelyan", isbn: "", date: "12/28/22" },
+            { title: "Eternity", author: "Trevelyan", isbn: "", date: "12/28/22" },
             { title: "One Up On Wall Street", author: "Lynch, Peter", isbn: "0743200403", date: "12/28/22" },
             { title: "As a Man Thinketh", author: "Allen, James", isbn: "1585425648", date: "12/28/22" },
             { title: "The Spy and the Traitor", author: "Macintyre, Ben", isbn: "0771060335", date: "12/28/22" },
@@ -288,10 +342,27 @@
                 const bookItem = document.createElement('div');
                 bookItem.className = 'book-item';
 
-                const img = document.createElement('img');
-                img.className = 'book-cover';
+                // Check if we have a manual cover for this book
+                const manualCover = manualCovers[book.title];
 
-                if (book.isbn) {
+                if (manualCover) {
+                    // Use manual cover image
+                    const img = document.createElement('img');
+                    img.className = 'book-cover';
+                    img.src = `../img/book-covers/${manualCover}`;
+                    img.alt = book.title;
+                    img.onerror = function () {
+                        this.style.display = 'none';
+                        const placeholder = document.createElement('div');
+                        placeholder.className = 'book-cover error';
+                        placeholder.textContent = 'No cover';
+                        this.parentNode.insertBefore(placeholder, this);
+                    };
+                    bookItem.appendChild(img);
+                } else if (book.isbn) {
+                    // Use Open Library API
+                    const img = document.createElement('img');
+                    img.className = 'book-cover';
                     img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
                     img.alt = book.title;
                     img.onerror = function () {
@@ -301,7 +372,9 @@
                         placeholder.textContent = 'No cover';
                         this.parentNode.insertBefore(placeholder, this);
                     };
+                    bookItem.appendChild(img);
                 } else {
+                    // No cover available
                     const placeholder = document.createElement('div');
                     placeholder.className = 'book-cover error';
                     placeholder.textContent = 'No cover';
@@ -316,9 +389,6 @@
                 author.className = 'book-author';
                 author.textContent = book.author;
 
-                if (book.isbn) {
-                    bookItem.appendChild(img);
-                }
                 bookItem.appendChild(title);
                 bookItem.appendChild(author);
 
