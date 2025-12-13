@@ -7,7 +7,6 @@
     <link rel="icon" type="image/png" href="../img/favicon.png" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="../style.css">
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Google tag (gtag.js) -->
@@ -19,6 +18,64 @@
 
         gtag('config', 'G-1P559682GZ');
     </script>
+
+    <style>
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .book-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .book-cover {
+            width: 120px;
+            height: 180px;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .book-cover.error {
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .book-title {
+            font-size: 0.9em;
+            font-weight: 500;
+            margin: 5px 0;
+            line-height: 1.3;
+        }
+
+        .book-author {
+            font-size: 0.8em;
+            color: #666;
+            margin: 2px 0;
+        }
+
+        @media (max-width: 768px) {
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 15px;
+            }
+
+            .book-cover {
+                width: 100px;
+                height: 150px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -34,24 +91,8 @@
             </div>
             <br><br>
             <hr>
-            <hr>
-            <article class="blog-post">
-                <p>
-                    <ul>
-                        <li><i>The Myth of Sisyphus</i> by Albert Camus</li>
-                        <li><i>The Brothers Karamazov</i> by Fyodor Dostoevsky</li>
-                        <li><i>Things Hidden Since the Foundation of the World</i> by René Girard</li>
-                        <li><i> Gödel, Escher, Bach</i> by Douglas Hofstadter</li>
-                        <li><i>The Meritocracy Trap</i> by Daniel Markovits</li>
-                        <li><i> Deep Work</i> by Cal Newport</li>
-                        <li><i>The Last Lecture</i> by Randy Pausch</li>
-                        <li><i> Discrimination and Disparities</i> by Thomas Sowell</li>
-                        <li><i>The Goldfinch</i> by Donna Tartt</li>
-                        <li><i>Zero to One</i> by Peter Thiel</li>
-                        <li><i>It's Kind of a Funny Story</i> by Ned Vizzini</li>
-                    </ul>
-                </p>
-            </article>
+            <br>
+            <div id="booksContainer"></div>
         </main>
     </div>
     <footer>
@@ -60,6 +101,69 @@
             <br>
         </div>
     </footer>
+
+    <script>
+        const books = [
+            { title: "The Myth of Sisyphus", author: "Camus, Albert", isbn: "0141182008" },
+            { title: "The Brothers Karamazov", author: "Dostoevsky, Fyodor", isbn: "0374528373" },
+            { title: "Things Hidden Since the Foundation of the World", author: "Girard, René", isbn: "0804722153" },
+            { title: "Gödel, Escher, Bach", author: "Hofstadter, Douglas R.", isbn: "0465026567" },
+            { title: "The Meritocracy Trap", author: "Markovits, Daniel", isbn: "0735221995" },
+            { title: "Deep Work", author: "Newport, Cal", isbn: "1455586692" },
+            { title: "The Last Lecture", author: "Pausch, Randy", isbn: "0786868716" },
+            { title: "Basic Economics", author: "Sowell, Thomas", isbn: "0465081452" },
+            { title: "The Goldfinch", author: "Tartt, Donna", isbn: "0316055433" },
+            { title: "Zero to One", author: "Thiel, Peter", isbn: "0804139296" },
+            { title: "It's Kind of a Funny Story", author: "Vizzini, Ned", isbn: "078685197X" }
+        ];
+
+        function getLastName(author) {
+            const parts = author.split(',');
+            return parts[0].trim().toLowerCase();
+        }
+
+        books.sort((a, b) => {
+            const lastNameA = getLastName(a.author);
+            const lastNameB = getLastName(b.author);
+            return lastNameA.localeCompare(lastNameB);
+        });
+
+        const container = document.getElementById('booksContainer');
+        const grid = document.createElement('div');
+        grid.className = 'books-grid';
+
+        books.forEach(book => {
+            const bookItem = document.createElement('div');
+            bookItem.className = 'book-item';
+
+            const img = document.createElement('img');
+            img.className = 'book-cover';
+            img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
+            img.alt = book.title;
+            img.onerror = function () {
+                this.style.display = 'none';
+                const placeholder = document.createElement('div');
+                placeholder.className = 'book-cover error';
+                placeholder.textContent = 'No cover';
+                this.parentNode.insertBefore(placeholder, this);
+            };
+            bookItem.appendChild(img);
+
+            const title = document.createElement('div');
+            title.className = 'book-title';
+            title.textContent = book.title;
+
+            const author = document.createElement('div');
+            author.className = 'book-author';
+            author.textContent = book.author;
+
+            bookItem.appendChild(title);
+            bookItem.appendChild(author);
+            grid.appendChild(bookItem);
+        });
+
+        container.appendChild(grid);
+    </script>
 </body>
 
 </html>
