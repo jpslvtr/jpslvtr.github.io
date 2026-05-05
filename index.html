@@ -46,10 +46,7 @@
 		<div class="bio-section fade-in" style="animation-delay: 0ms;">
 			<img class="profile-image" src="img/profile.png" alt="James Park">
 			<div class="bio-text">
-				<div class="name">James Park</div>
-				<p>
-					I'm a <a href="https://www.youtube.com/watch?v=5OYy_UtINo4/" target="_blank">forward deployed software engineer</a> at Palantir Technologies. I previously served as a <a href="https://www.navy.com/careers-benefits/careers/intelligence-information-cryptology/cryptologic-warfare-officer" target="_blank">Cryptologic Warfare Officer (1810)</a> in the US Navy. I graduated from the US Naval Academy and Stanford GSB. I went to business school to work on 1. entrepreneurship and 2. <a href="https://www.amazon.com/Sorry-Late-Didnt-Want-Come/dp/1449499236/" target="_blank">my social battery</a>. Hobbies include ultrarunning, reading good books, and wedging philosophy into conversations.
-				</p>
+				<div class="name name-link" onclick="openModal('About', '', '')">James Park</div>
 				<p style="margin-top: 0.75rem;">
 					<a href="https://jpslvtr.substack.com/" target="_blank">Substack</a> &middot;
 					<a href="https://www.linkedin.com/in/jpslvtr/" target="_blank">LinkedIn</a> &middot;
@@ -183,12 +180,21 @@ APCYutWyZfH1MraX+owi1yNV3qQq295BMSBEsksJA6EH
 	</footer>
 
 	<script>
+		const extendedDescs = {
+			'About': "I'm a <a href=\"https://www.youtube.com/watch?v=5OYy_UtINo4/\" target=\"_blank\" rel=\"noopener noreferrer\">forward deployed software engineer</a> at Palantir Technologies. I previously served as a <a href=\"https://www.navy.com/careers-benefits/careers/intelligence-information-cryptology/cryptologic-warfare-officer\" target=\"_blank\" rel=\"noopener noreferrer\">Cryptologic Warfare Officer (1810)</a> in the US Navy. I graduated from the US Naval Academy and Stanford GSB. I went to business school to work on 1. entrepreneurship and 2. <a href=\"https://www.amazon.com/Sorry-Late-Didnt-Want-Come/dp/1449499236/\" target=\"_blank\" rel=\"noopener noreferrer\">my social battery</a>. Hobbies include ultrarunning, reading good books, and wedging philosophy into conversations.",
+			'Past Chances': "Built and launched a secret-crush matchmaking site for Stanford GSB's Class of 2025, inspired by Dartmouth's \"Last Chances\" tradition. Owned the product, engineering, and launch strategy, building the app with React, TypeScript, Vite, Firebase Auth, Firestore, Firebase Storage, and Cloud Functions. The project drove strong class engagement during graduation week and generated thousands of private match events.",
+			'Scout': "Built and launched a social mobile app for curated place recommendations, combining Google Maps-style saved lists with an Instagram-like discovery layer. The product let users create lists, follow friends, tag places with personal notes, and discover what their community was saving. We tested the idea through Stanford pitch nights, user feedback, and VC conversations, ultimately learning that it was a <a href=\"https://www.youtube.com/watch?v=GU9iT7MW0rs\" target=\"_blank\" rel=\"noopener noreferrer\">tarpit idea</a>. Built with Flutter, Dart, Firebase Firestore, Cloud Functions in TypeScript, and the Google Maps and Places API.",
+			'Revelio': "Built an OSINT reporting platform for military intelligence analysts as part of Stanford's CS224G: Building and Scaling LLM Apps. Revelio aggregated content from sources like Reddit, then let analysts search, chat with a RAG-powered assistant, and generate formatted intelligence reports from sourced material. We went deep on the tech, but learned that success in defense depends heavily on GTM: knowing the right program offices, funding pathways, and acquisition timelines. Built with a FastAPI backend, React frontend, MongoDB Atlas, LangChain, OpenAI embeddings and GPT, Socket.io for real-time streaming, and Dockerized cron jobs for scheduled data ingestion.",
+			'Zzama': "Built and launched a pseudo-anonymous social Q&A platform where users could ask questions, answer publicly on their profiles, follow others, and discover answers through a social feed. The product explored a modern version of Ask.fm or Formspring, with anonymous-to-identified identity paths, in-app and email notifications, and a daily Question of the Day to seed engagement. Built with Flutter, Dart, Firebase Auth, Firestore, Firebase Storage, Cloud Functions in TypeScript, BLoC, GoRouter, and MXroute SMTP via nodemailer."
+		};
+
 		function openModal(title, desc, url) {
 			document.getElementById('modal-title').textContent = title;
-			document.getElementById('modal-desc').innerHTML = desc;
+			document.getElementById('modal-desc').innerHTML = extendedDescs[title] || desc;
 			const link = document.getElementById('modal-link');
 			link.href = url;
 			link.textContent = url;
+			link.style.display = url ? '' : 'none';
 			document.getElementById('modal-overlay').classList.add('open');
 		}
 
