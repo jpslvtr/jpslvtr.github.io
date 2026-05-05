@@ -33,6 +33,15 @@
 		})();
 	</script>
 
+	<div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
+		<div class="modal" onclick="event.stopPropagation()">
+			<button class="modal-close" onclick="closeModal()">&#x2715;</button>
+			<div class="modal-title" id="modal-title"></div>
+			<div class="modal-desc" id="modal-desc"></div>
+			<a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer"></a>
+		</div>
+	</div>
+
 	<main>
 		<div class="bio-section fade-in" style="animation-delay: 0ms;">
 			<img class="profile-image" src="img/profile.png" alt="James Park">
@@ -68,85 +77,89 @@ APCYutWyZfH1MraX+owi1yNV3qQq295BMSBEsksJA6EH
 		<div class="fade-in" style="animation-delay: 140ms;">
 			<hr>
 			<div class="section-header">
-				<span class="section-label">Software</span>
+				<span class="section-label">Projects</span>
 			</div>
 
-			<span class="cat-label" style="margin-top: 0.75rem;">Social Apps</span>
+			<span class="cat-label" style="margin-top: 0.75rem;">Startups</span>
 			<ul class="project-list">
-				<li>
-					<a href="https://www.pastchances.com/" target="_blank">Past Chances</a>
+				<li onclick="openModal('Past Chances', 'A matchmaking site that reveals mutual crushes only if the feeling is mutual.', 'https://www.pastchances.com/')">
+					<span class="project-link">Past Chances</span>
 					<div class="project-desc">A matchmaking site that reveals mutual crushes only if the feeling is mutual.</div>
 				</li>
-				<li>
-					<a href="https://www.zzama.com/" target="_blank">Zzama</a>
-					<div class="project-desc">A pseudo-anonymous social Q&amp;A platform.</div>
-				</li>
-				<li>
-					<a href="https://apps.apple.com/us/app/scout-people-places-plans/id6505122724/" target="_blank">Scout</a>
+				<li onclick="openModal('Scout', 'A mobile app for creating and discovering curated lists of places.', 'https://apps.apple.com/us/app/scout-people-places-plans/id6505122724/')">
+					<span class="project-link">Scout</span>
 					<div class="project-desc">A mobile app for creating and discovering curated lists of places.</div>
 				</li>
-				<li>
-					<a href="https://github.com/jpslvtr/syndicate/" target="_blank">Syndicate</a>
+				<li onclick="openModal('Revelio', 'An open source intelligence reporting platform. Features custom web crawlers, RAG-powered analysis, and real-time chain output streaming.', 'https://www.youtube.com/watch?v=qWLe6h_nIug&t=1251s')">
+					<span class="project-link">Revelio</span>
+					<div class="project-desc">An open source intelligence reporting platform. Features custom web crawlers, RAG-powered analysis, and real-time chain output streaming.</div>
+				</li>
+				<li onclick="openModal('Zzama', 'A pseudo-anonymous social Q&amp;A platform.', 'https://www.zzama.com/')">
+					<span class="project-link">Zzama</span>
+					<div class="project-desc">A pseudo-anonymous social Q&amp;A platform.</div>
+				</li>
+			</ul>
+
+			<span class="cat-label">Social Apps</span>
+			<ul class="project-list">
+				<li onclick="openModal('Syndicate', 'A private newsletter platform.', 'https://github.com/jpslvtr/syndicate/')">
+					<span class="project-link">Syndicate</span>
 					<div class="project-desc">A private newsletter platform.</div>
 				</li>
-				<li>
-					<a href="https://github.com/jpslvtr/scuttle" target="_blank">Scuttle</a>
+				<li onclick="openModal('Scuttle', 'An anonymous communication platform for military commands, inspired by Yik Yak.', 'https://github.com/jpslvtr/scuttle')">
+					<span class="project-link">Scuttle</span>
 					<div class="project-desc">An anonymous communication platform for military commands, inspired by Yik Yak.</div>
 				</li>
 			</ul>
 
 			<span class="cat-label">Security</span>
 			<ul class="project-list">
-				<li>
-					<a href="https://jpslvtr.com/pgp-cipher/" target="_blank">PGP Cipher</a>
+				<li onclick="openModal('PGP Cipher', 'Web-based PGP cipher that works with your keys. All encryption and decryption happens locally in your browser.', 'https://jpslvtr.com/pgp-cipher/')">
+					<span class="project-link">PGP Cipher</span>
 					<div class="project-desc">Web-based PGP cipher that works with your keys. All encryption and decryption happens locally in your browser.</div>
 				</li>
-				<li>
-					<a href="https://jpslvtr.com/inconvenient-chat/" target="_blank">Inconvenient Chat</a>
+				<li onclick="openModal('Inconvenient Chat', 'A social version of PGP Cipher. Browser-based public key encryption for secure messaging.', 'https://jpslvtr.com/inconvenient-chat/')">
+					<span class="project-link">Inconvenient Chat</span>
 					<div class="project-desc">A social version of PGP Cipher. Browser-based public key encryption for secure messaging.</div>
 				</li>
-				<li>
-					<a href="https://github.com/jpslvtr/cs155-proj3" target="_blank">Network Security</a>
+				<li onclick="openModal('Network Security', 'A DNS spoofing tool capable of hijacking HTTP connections.', 'https://github.com/jpslvtr/cs155-proj3')">
+					<span class="project-link">Network Security</span>
 					<div class="project-desc">A DNS spoofing tool capable of hijacking HTTP connections.</div>
 				</li>
-				<li>
-					<a href="https://github.com/jpslvtr/cs155-proj2" target="_blank">Web Security</a>
+				<li onclick="openModal('Web Security', 'Defenses against web attacks, to include cookie theft, cross-site request forgery (CSRF), and SQL injection.', 'https://github.com/jpslvtr/cs155-proj2')">
+					<span class="project-link">Web Security</span>
 					<div class="project-desc">Defenses against web attacks, to include cookie theft, cross-site request forgery (CSRF), and SQL injection.</div>
 				</li>
 			</ul>
 
 			<span class="cat-label">AI</span>
 			<ul class="project-list">
-				<li>
-					<a href="https://www.youtube.com/watch?v=qWLe6h_nIug&t=1251s" target="_blank">Revelio</a>
-					<div class="project-desc">An open source intelligence reporting platform. Features custom web crawlers, RAG-powered analysis, and real-time chain output streaming.</div>
-				</li>
-				<li>
-					<a href="https://github.com/jpslvtr/cs231n-proj/blob/main/cs231n_final_report.pdf" target="_blank">Naval Vessel Classification</a>
+				<li onclick="openModal('Naval Vessel Classification', 'Fine-tuned ViT and Swin Transformer models on 8,908 ship images across five categories.', 'https://github.com/jpslvtr/cs231n-proj/blob/main/cs231n_final_report.pdf')">
+					<span class="project-link">Naval Vessel Classification</span>
 					<div class="project-desc">Fine-tuned ViT and Swin Transformer models on 8,908 ship images across five categories.</div>
 				</li>
-				<li>
-					<a href="https://github.com/jpslvtr/sgbs210/blob/main/sgbs210.pdf" target="_blank">Ship Arrival Regression Analysis</a>
+				<li onclick="openModal('Ship Arrival Regression Analysis', 'Models to optimize ship arrival patterns at Saqr Port using AIS data to avoid costly demurrage fees.', 'https://github.com/jpslvtr/sgbs210/blob/main/sgbs210.pdf')">
+					<span class="project-link">Ship Arrival Regression Analysis</span>
 					<div class="project-desc">Models to optimize ship arrival patterns at Saqr Port using AIS data to avoid costly demurrage fees.</div>
 				</li>
 			</ul>
 
 			<span class="cat-label">Tools</span>
 			<ul class="project-list">
-				<li>
-					<a href="https://www.wherecaniwatchthisthing.com/" target="_blank">Where Can I Watch This Thing?</a>
+				<li onclick="openModal('Where Can I Watch This Thing?', 'For whenever you ask &quot;where can I watch [movie or show x]?&quot;', 'https://www.wherecaniwatchthisthing.com/')">
+					<span class="project-link">Where Can I Watch This Thing?</span>
 					<div class="project-desc">For whenever you ask "where can I watch [movie or show x]?"</div>
 				</li>
-				<li>
-					<a href="https://jpslvtr.github.io/weather-forecast/" target="_blank">Weather Forecast</a>
+				<li onclick="openModal('Weather Forecast', 'An app that I mostly use for knowing what to wear before leaving the house for a run.', 'https://jpslvtr.github.io/weather-forecast/')">
+					<span class="project-link">Weather Forecast</span>
 					<div class="project-desc">An app that I mostly use for knowing what to wear before leaving the house for a run.</div>
 				</li>
-				<li>
-					<a href="https://jpslvtr.github.io/pace-calc/" target="_blank">Pace Calculator</a>
+				<li onclick="openModal('Pace Calculator', 'Find total time, distance, or pace by entering values for any two of the three.', 'https://jpslvtr.github.io/pace-calc/')">
+					<span class="project-link">Pace Calculator</span>
 					<div class="project-desc">Find total time, distance, or pace by entering values for any two of the three.</div>
 				</li>
-				<li>
-					<a href="https://jpslvtr.github.io/trivia/" target="_blank">Trivia</a>
+				<li onclick="openModal('Trivia', 'A snappy single-page trivia app.', 'https://jpslvtr.github.io/trivia/')">
+					<span class="project-link">Trivia</span>
 					<div class="project-desc">A snappy single-page trivia app.</div>
 				</li>
 			</ul>
@@ -168,6 +181,25 @@ APCYutWyZfH1MraX+owi1yNV3qQq295BMSBEsksJA6EH
 	<footer>
 		<p>&copy; 2025 James Park</p>
 	</footer>
+
+	<script>
+		function openModal(title, desc, url) {
+			document.getElementById('modal-title').textContent = title;
+			document.getElementById('modal-desc').innerHTML = desc;
+			const link = document.getElementById('modal-link');
+			link.href = url;
+			link.textContent = url;
+			document.getElementById('modal-overlay').classList.add('open');
+		}
+
+		function closeModal() {
+			document.getElementById('modal-overlay').classList.remove('open');
+		}
+
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape') closeModal();
+		});
+	</script>
 </body>
 
 </html>
