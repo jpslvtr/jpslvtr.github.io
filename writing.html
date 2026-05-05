@@ -2,63 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>James Park - Writing</title>
-    <link rel="icon" type="image/png" href="img/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="style.css">
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<meta charset="utf-8">
+	<title>James Park — Writing</title>
+	<link rel="icon" type="image/png" href="img/favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script>if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');</script>
+	<link rel="stylesheet" href="style.css">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P559682GZ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-1P559682GZ');
-    </script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P559682GZ"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-1P559682GZ');
+	</script>
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-            <p class="page-header">Writing</p>
-            <br>
-        </header>
-        <hr>
-        <main>
-            <div class="back-link">
-                <a href="index.html" style="text-decoration: none;">← Back</a>
-            </div>
-            <br>
-            <div class="blog-posts">
-                <div class="post-preview">
-                    <a href="https://jpslvtr.substack.com/">My Substack</a>
-                </div>
-                <hr><hr><br>
-                <div class="post-preview">
-                    <a href="https://github.com/jpslvtr/shared-misc/blob/main/appphys363.pdf">To What Extent Does Quantum Mechnanics Impact Free Will?</a>
-                </div>
-                <div class="post-preview">
-                    <a href="https://github.com/jpslvtr/shared-misc/blob/main/polecon342.pdf">The Complicated Trinity: Material Success, Religious Faith, and Human Goodness</a>
-                </div>
-                <div class="post-preview">
-                    <a href="p/stanford.html">Favorite Classes at Stanford</a>
-                </div>
-                <div class="post-preview">
-                    <a href="p/books.html">Favorite Books</a>
-                </div>
-            </div>
-        </main>
-    </div>
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 James Park</p>
-            <br>
-        </div>
-    </footer>
-</body> 
+	<button class="theme-toggle" id="themeBtn" onclick="
+		const d = document.documentElement;
+		const on = d.classList.toggle('dark');
+		localStorage.setItem('theme', on ? 'dark' : 'light');
+		this.textContent = on ? 'light' : 'dark';
+	">dark</button>
+	<script>
+		(function() {
+			const btn = document.getElementById('themeBtn');
+			if (btn && document.documentElement.classList.contains('dark')) btn.textContent = 'light';
+		})();
+	</script>
+
+	<main>
+		<a class="back-link" href="index.html">← Back</a>
+
+		<div class="fade-in" style="animation-delay: 0ms;">
+			<div class="page-heading">Writing</div>
+
+			<ul class="project-list">
+				<li><a href="https://jpslvtr.substack.com/" target="_blank">My Substack</a></li>
+			</ul>
+
+			<hr>
+
+			<ul class="project-list">
+				<li><a href="https://github.com/jpslvtr/shared-misc/blob/main/appphys363.pdf" target="_blank">To What Extent Does Quantum Mechanics Impact Free Will?</a></li>
+				<li><a href="https://github.com/jpslvtr/shared-misc/blob/main/polecon342.pdf" target="_blank">The Complicated Trinity: Material Success, Religious Faith, and Human Goodness</a></li>
+				<li><a href="p/stanford.html">Favorite Classes at Stanford</a></li>
+				<li><a href="p/favorite-books.html">Favorite Books</a></li>
+			</ul>
+		</div>
+	</main>
+
+	<footer>
+		<p>&copy; 2025 James Park</p>
+	</footer>
+</body>
 
 </html>
