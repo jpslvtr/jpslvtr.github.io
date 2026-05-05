@@ -2,59 +2,57 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>James Park - Writing</title>
-    <link rel="icon" type="image/png" href="../img/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="../style.css">
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<meta charset="utf-8">
+	<title>James Park</title>
+	<link rel="icon" type="image/png" href="../img/favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script>if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');</script>
+	<link rel="stylesheet" href="../style.css">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P559682GZ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-1P559682GZ');
-    </script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P559682GZ"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-1P559682GZ');
+	</script>
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-            <p class="page-header">Writing</p>
-            <br>
-        </header>
-        <hr>
-        <main>
-            <div class="back-link">
-                <a href="../writing.html" style="text-decoration: none;">← Back</a>
-            </div>
-            <br><br>
-            <h4 class="post-title">Post title</h4>
-            <div class="post-meta">Month day, year</div>
-            <br>
-            <hr>
-            <hr>
-            <article class="blog-post">
-                <p>
-                    Paragraph 1
-                    <span class="para-break"></span>
-                    Paragraph 2
-                    <span class="para-break"></span>
-                    <a href="url" target="_blank">link</a>
-                </p>
-            </article>
-        </main>
-    </div>
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 James Park</p>
-            <br>
-        </div>
-    </footer>
+	<button class="theme-toggle" id="themeBtn" onclick="
+		const d = document.documentElement;
+		const on = d.classList.toggle('dark');
+		localStorage.setItem('theme', on ? 'dark' : 'light');
+		this.textContent = on ? 'light' : 'dark';
+	">dark</button>
+	<script>
+		(function() {
+			const btn = document.getElementById('themeBtn');
+			if (btn && document.documentElement.classList.contains('dark')) btn.textContent = 'light';
+		})();
+	</script>
+
+	<main>
+		<a class="back-link" href="../writing.html">← Back</a>
+
+		<div class="fade-in" style="animation-delay: 0ms;">
+			<div class="page-heading">Post title</div>
+			<div class="section-label" style="margin-bottom: 1.5rem;">Month day, year</div>
+
+			<hr>
+
+			<div class="article-content">
+				<p>Paragraph 1</p>
+				<p>Paragraph 2</p>
+				<p><a href="url" target="_blank">link</a></p>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<p>&copy; 2025 James Park</p>
+	</footer>
 </body>
 
 </html>

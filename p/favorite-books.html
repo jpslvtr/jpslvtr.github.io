@@ -2,169 +2,109 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>James Park</title>
-    <link rel="icon" type="image/png" href="../img/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="../style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<meta charset="utf-8">
+	<title>James Park — Favorite Books</title>
+	<link rel="icon" type="image/png" href="../img/favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script>if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');</script>
+	<link rel="stylesheet" href="../style.css">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P559682GZ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-1P559682GZ');
-    </script>
-
-    <style>
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 25px;
-            margin: 20px 0;
-        }
-
-        .book-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .book-cover {
-            width: 120px;
-            height: 180px;
-            object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 2px;
-            margin-bottom: 10px;
-        }
-
-        .book-cover.error {
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-        }
-
-        .book-title {
-            font-size: 0.9em;
-            font-weight: 500;
-            margin: 5px 0;
-            line-height: 1.3;
-        }
-
-        .book-author {
-            font-size: 0.8em;
-            color: #666;
-            margin: 2px 0;
-        }
-
-        @media (max-width: 768px) {
-            .books-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-                gap: 15px;
-            }
-
-            .book-cover {
-                width: 100px;
-                height: 150px;
-            }
-        }
-    </style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P559682GZ"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-1P559682GZ');
+	</script>
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-            <p class="page-header">Favorite Books</p>
-            <br>
-        </header>
-        <hr>
-        <main>
-            <div class="back-link">
-                <a href="../index.html" style="text-decoration: none;">← Back</a>
-            </div>
-            <br><br>
-            <hr>
-            <br>
-            <div id="booksContainer"></div>
-        </main>
-    </div>
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 James Park</p>
-            <br>
-        </div>
-    </footer>
+	<button class="theme-toggle" id="themeBtn" onclick="
+		const d = document.documentElement;
+		const on = d.classList.toggle('dark');
+		localStorage.setItem('theme', on ? 'dark' : 'light');
+		this.textContent = on ? 'light' : 'dark';
+	">dark</button>
+	<script>
+		(function() {
+			const btn = document.getElementById('themeBtn');
+			if (btn && document.documentElement.classList.contains('dark')) btn.textContent = 'light';
+		})();
+	</script>
 
-    <script>
-        const books = [
-            { title: "The Myth of Sisyphus", author: "Camus, Albert", isbn: "0141182008" },
-            { title: "The Brothers Karamazov", author: "Dostoevsky, Fyodor", isbn: "0374528373" },
-            { title: "Things Hidden Since the Foundation of the World", author: "Girard, René", isbn: "0804722153" },
-            { title: "Gödel, Escher, Bach", author: "Hofstadter, Douglas R.", isbn: "0465026567" },
-            { title: "The Meritocracy Trap", author: "Markovits, Daniel", isbn: "0735221995" },
-            { title: "Deep Work", author: "Newport, Cal", isbn: "1455586692" },
-            { title: "The Last Lecture", author: "Pausch, Randy", isbn: "0786868716" },
-            { title: "Basic Economics", author: "Sowell, Thomas", isbn: "0465081452" },
-            { title: "The Goldfinch", author: "Tartt, Donna", isbn: "0316055433" },
-            { title: "Zero to One", author: "Thiel, Peter", isbn: "0804139296" },
-            { title: "It's Kind of a Funny Story", author: "Vizzini, Ned", isbn: "078685197X" },
-            { title: "Man's Search for Meaning", author: "Frankl, Viktor E.", isbn: "080701429X"}
-        ];
+	<main>
+		<a class="back-link" href="../index.html">← Back</a>
 
-        function getLastName(author) {
-            const parts = author.split(',');
-            return parts[0].trim().toLowerCase();
-        }
+		<div class="fade-in" style="animation-delay: 0ms;">
+			<div class="page-heading">Favorite Books</div>
+			<div id="booksContainer"></div>
+		</div>
+	</main>
 
-        books.sort((a, b) => {
-            const lastNameA = getLastName(a.author);
-            const lastNameB = getLastName(b.author);
-            return lastNameA.localeCompare(lastNameB);
-        });
+	<footer>
+		<p>&copy; 2025 James Park</p>
+	</footer>
 
-        const container = document.getElementById('booksContainer');
-        const grid = document.createElement('div');
-        grid.className = 'books-grid';
+	<script>
+		const books = [
+			{ title: "The Myth of Sisyphus", author: "Camus, Albert", isbn: "0141182008" },
+			{ title: "The Brothers Karamazov", author: "Dostoevsky, Fyodor", isbn: "0374528373" },
+			{ title: "Things Hidden Since the Foundation of the World", author: "Girard, René", isbn: "0804722153" },
+			{ title: "Gödel, Escher, Bach", author: "Hofstadter, Douglas R.", isbn: "0465026567" },
+			{ title: "The Meritocracy Trap", author: "Markovits, Daniel", isbn: "0735221995" },
+			{ title: "Deep Work", author: "Newport, Cal", isbn: "1455586692" },
+			{ title: "The Last Lecture", author: "Pausch, Randy", isbn: "0786868716" },
+			{ title: "Basic Economics", author: "Sowell, Thomas", isbn: "0465081452" },
+			{ title: "The Goldfinch", author: "Tartt, Donna", isbn: "0316055433" },
+			{ title: "Zero to One", author: "Thiel, Peter", isbn: "0804139296" },
+			{ title: "It's Kind of a Funny Story", author: "Vizzini, Ned", isbn: "078685197X" },
+			{ title: "Man's Search for Meaning", author: "Frankl, Viktor E.", isbn: "080701429X" }
+		];
 
-        books.forEach(book => {
-            const bookItem = document.createElement('div');
-            bookItem.className = 'book-item';
+		function getLastName(author) {
+			return author.split(',')[0].trim().toLowerCase();
+		}
 
-            const img = document.createElement('img');
-            img.className = 'book-cover';
-            img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
-            img.alt = book.title;
-            img.onerror = function () {
-                this.style.display = 'none';
-                const placeholder = document.createElement('div');
-                placeholder.className = 'book-cover error';
-                placeholder.textContent = 'No cover';
-                this.parentNode.insertBefore(placeholder, this);
-            };
-            bookItem.appendChild(img);
+		books.sort((a, b) => getLastName(a.author).localeCompare(getLastName(b.author)));
 
-            const title = document.createElement('div');
-            title.className = 'book-title';
-            title.textContent = book.title;
+		const container = document.getElementById('booksContainer');
+		const grid = document.createElement('div');
+		grid.className = 'books-grid';
 
-            const author = document.createElement('div');
-            author.className = 'book-author';
-            author.textContent = book.author;
+		books.forEach((book, i) => {
+			const bookItem = document.createElement('div');
+			bookItem.className = 'book-item fade-in';
+			bookItem.style.animationDelay = `${Math.min(i * 35, 500) + 70}ms`;
 
-            bookItem.appendChild(title);
-            bookItem.appendChild(author);
-            grid.appendChild(bookItem);
-        });
+			const img = document.createElement('img');
+			img.className = 'book-cover';
+			img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
+			img.alt = book.title;
+			img.onerror = function() {
+				this.style.display = 'none';
+				const placeholder = document.createElement('div');
+				placeholder.className = 'book-cover-error';
+				placeholder.textContent = 'No cover';
+				this.parentNode.insertBefore(placeholder, this);
+			};
+			bookItem.appendChild(img);
 
-        container.appendChild(grid);
-    </script>
+			const title = document.createElement('div');
+			title.className = 'book-title';
+			title.textContent = book.title;
+
+			const author = document.createElement('div');
+			author.className = 'book-author';
+			author.textContent = book.author;
+
+			bookItem.appendChild(title);
+			bookItem.appendChild(author);
+			grid.appendChild(bookItem);
+		});
+
+		container.appendChild(grid);
+	</script>
 </body>
 
 </html>

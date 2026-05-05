@@ -2,409 +2,327 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>James Park</title>
-    <link rel="icon" type="image/png" href="../img/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="../style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<meta charset="utf-8">
+	<title>James Park — All Books</title>
+	<link rel="icon" type="image/png" href="../img/favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script>if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');</script>
+	<link rel="stylesheet" href="../style.css">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P559682GZ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-1P559682GZ');
-    </script>
-
-    <style>
-        .year-section {
-            margin: 40px 0;
-        }
-
-        .year-header {
-            font-size: 1.8em;
-            font-weight: 600;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #333;
-        }
-
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 25px;
-            margin: 20px 0;
-        }
-
-        .book-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .book-cover {
-            width: 120px;
-            height: 180px;
-            object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 2px;
-            margin-bottom: 10px;
-        }
-
-        .book-cover.error {
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-        }
-
-        .book-title {
-            font-size: 0.9em;
-            font-weight: 500;
-            margin: 5px 0;
-            line-height: 1.3;
-        }
-
-        .book-author {
-            font-size: 0.8em;
-            color: #666;
-            margin: 2px 0;
-        }
-
-        @media (max-width: 768px) {
-            .books-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-                gap: 15px;
-            }
-
-            .book-cover {
-                width: 100px;
-                height: 150px;
-            }
-        }
-    </style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P559682GZ"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-1P559682GZ');
+	</script>
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-            <p class="page-header">All Books</p>
-            <br>
-        </header>
-        <hr>
-        <main>
-            <div class="back-link">
-                <a href="../index.html" style="text-decoration: none;">← Back</a>
-            </div>
-            <div id="yearsContainer"></div>
-        </main>
-    </div>
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 James Park</p>
-            <br>
-        </div>
-    </footer>
+	<button class="theme-toggle" id="themeBtn" onclick="
+		const d = document.documentElement;
+		const on = d.classList.toggle('dark');
+		localStorage.setItem('theme', on ? 'dark' : 'light');
+		this.textContent = on ? 'light' : 'dark';
+	">dark</button>
+	<script>
+		(function() {
+			const btn = document.getElementById('themeBtn');
+			if (btn && document.documentElement.classList.contains('dark')) btn.textContent = 'light';
+		})();
+	</script>
 
-    <script>
-        // Mapping of book titles to manual cover images
-        const manualCovers = {
-            "Harry Potter and the Order of the Phoenix": "order-of-the-phoenix.jpg",
-            "12 Rules for Life": "12-rules-for-life.jpg",
-            "A Mind at Play": "a-mind-at-play.jpg",
-            "Being You": "being-you.jpg",
-            "Born to Run": "born-to-run.jpg",
-            "Can't Hurt Me": "cant-hurt-me.jpg",
-            "Harry Potter and the Chamber of Secrets": "chamber-of-secrets.jpg",
-            "Copenhagen": "copenhagen.jpg",
-            "Harry Potter and the Deathly Hallows": "deathly-hallows.jpg",
-            "Discrimination and Disparities": "discrimination-and-disparities.jpg",
-            "Eternity": "eternity.jpg",
-            "Evolution of Desire": "evolution-of-desire.jpg",
-            "Harry Potter and the Half-Blood Prince": "half-blood-prince.jpg",
-            "How to Die": "how-to-die.jpg",
-            "In Pursuit of the Traveling Salesman": "in-pursuit-of-the-traveling-salesman.jpg",
-            "Interpreter of Maladies": "interpreter-of-maladies.jpg",
-            "IQ (Independence Hall)": "iq-independence-hall.jpg",
-            "Ishmael": "ishmael.jpg",
-            "Mere Christianity": "mere-christianity.jpg",
-            "Miramar": "miramar.jpg",
-            "No Longer Human": "no-longer-human.jpg",
-            "Harry Potter and the Prisoner of Azkaban": "prisoner-of-azkaban.jpg",
-            "Finding Ultra": "rich-roll.jpg",
-            "Running in Silence": "running-in-silence.jpg",
-            "Sea Stories": "sea-stories.jpg",
-            "Secrets of Sand Hill Road": "secrets-of-sand-hill-road.jpg",
-            "Siddhartha": "siddhartha.jpg",
-            "Harry Potter and the Sorcerer's Stone": "sorcerers-stone.jpg",
-            "Synchronicity": "synchronicity.jpg",
-            "The Challenger Customer": "the-challeger-customer.jpg",
-            "The Dark Forest (Remembrance of Earth's Past)": "the-dark-forest.jpg",
-            "The Death of Ivan Ilych": "the-death-of-ivan-ilyich.jpg",
-            "The Double Helix": "the-double-helix.jpg",
-            "The Five People You Meet in Heaven": "the-five-people-you-meet-in-heaven.jpg",
-            "The Founders": "the-founders.jpg",
-            "The Four Horsemen": "the-four-horsemen.jpg",
-            "The Hitchhiker's Guide to the Galaxy": "the-hitchhikers-guide-to-the-galaxy.jpg",
-            "The Killer Across the Table": "the-killer-across-the-table.jpg",
-            "The Last Lecture": "the-last-lecture.jpg",
-            "The Meritocracy Trap": "the-meritocracy-trap.jpg",
-            "The Righteous Mind": "the-righteous-mind.jpg",
-            "The Spy and the Traitor": "the-spy-and-the-traitor.jpg",
-            "The Stranger": "the-stranger.jpg",
-            "The Three-Body Problem (Remembrance of Earth's Past)": "the-three-body-problem.jpg",
-            "The Time of Our Singing": "the-time-of-our-singing.jpg",
-            "The World's Religions": "the-worlds-religions.jpg",
-            "Thinking, Fast and Slow": "thinking-fast-and-slow.jpg",
-            "Tied In": "tied-in.jpg",
-            "Work": "work.jpg",
-            "The Armageddon Conspiracy": "the-armageddon-conspiracy.jpg"
-        };
+	<main>
+		<a class="back-link" href="../index.html">← Back</a>
 
-        const books = [
-            { title: "The Secret History", author: "Tartt, Donna", isbn: "1400031702", year: 2025 },
-            { title: "After", author: "Greyson, Bruce", isbn: "1250263034", year: 2025 },
-            { title: "Facebook", author: "Levy, Steven", isbn: "0735213151", year: 2025 },
-            { title: "The Technological Republic", author: "Karp, Alexander C.", isbn: "0593798694", year: 2025 },
-            { title: "The Mathematical Universe", author: "Dunham, William", isbn: "0471176613", year: 2025 },
-            { title: "Synchronicity", author: "Halpern, Paul", isbn: "1541673638", year: 2025 },
-            { title: "What I Believe", author: "Tolstoy, Leo", isbn: "1402185235", year: 2025 },
-            { title: "A Confession", author: "Tolstoy, Leo", isbn: "1598184717", year: 2025 },
-            { title: "The Death of Ivan Ilych", author: "Tolstoy, Leo", isbn: "", year: 2025 },
-            { title: "She Said", author: "Kantor, Jodi", isbn: "0525560343", year: 2025 },
-            { title: "Creativity, Inc.", author: "Catmull, Ed", isbn: "0812993012", year: 2025 },
-            { title: "Evolution of Desire", author: "Haven, Cynthia L.", isbn: "1611862833", year: 2025 },
-            { title: "The Number Devil", author: "Enzensberger, Hans Magnus", isbn: "0805062998", year: 2025 },
-            { title: "The Armageddon Conspiracy", author: "Hockney, Mike", isbn: "1847994741", year: 2025 },
-            { title: "Spies, Lies, and Algorithms", author: "Zegart, Amy B.", isbn: "0691147132", year: 2025 },
-            { title: "The Mass Psychology of Fascism", author: "Reich, Wilhelm", isbn: "0374508844", year: 2025 },
-            { title: "The Revolt of the Public and the Crisis of Authority in the New Millennium", author: "Gurri, Martin", isbn: "1732265143", year: 2025 },
-            { title: "The Killer Across the Table", author: "Douglas, John E.", isbn: "0062939505", year: 2025 },
-            { title: "Quadrivium", author: "Martineau, John", isbn: "0802778135", year: 2025 },
-            { title: "The Art of Adaptation", author: "Seger, Linda", isbn: "0805016260", year: 2025 },
-            { title: "Passport to Magonia", author: "Vallée, Jacques F.", isbn: "0809237962", year: 2025 },
-            { title: "Become What You Are", author: "Watts, Alan W.", isbn: "1570629404", year: 2025 },
-            { title: "Running in Silence", author: "Steil, Rachael Rose", isbn: "1633933407", year: 2025 },
-            { title: "IQ (Independence Hall)", author: "Smith, Roland", isbn: "", year: 2025 },
-            { title: "How to Die", author: "Seneca", isbn: "0691175578", year: 2025 },
-            { title: "Maps of Meaning", author: "Peterson, Jordan B.", isbn: "0415922224", year: 2025 },
-            { title: "Life of Pi", author: "Martel, Yann", isbn: "0770430074", year: 2025 },
-            { title: "Letters to a Young Contrarian", author: "Hitchens, Christopher", isbn: "0465030335", year: 2025 },
-            { title: "Arguably", author: "Hitchens, Christopher", isbn: "0771041411", year: 2025 },
-            { title: "Work", author: "Hanh, Thich Nhat", isbn: "", year: 2022 },
-            { title: "Found (The Missing)", author: "Haddix, Margaret Peterson", isbn: "1416954171", year: 2025 },
-            { title: "Natural Goodness", author: "Foot, Philippa", isbn: "019926547X", year: 2025 },
-            { title: "Introduction to Algorithms", author: "Cormen, Thomas H.", isbn: "0262032937", year: 2022 },
-            { title: "The Fall", author: "Camus, Albert", isbn: "0679720227", year: 2025 },
-            { title: "Simulacra and Simulation", author: "Baudrillard, Jean", isbn: "0472065211", year: 2025 },
-            { title: "Tied In", author: "Goldberg, Lee", isbn: "1453716106", year: 2025 },
-            { title: "Slow Productivity", author: "Newport, Cal", isbn: "0593544854", year: 2024 },
-            { title: "The Goldfinch", author: "Tartt, Donna", isbn: "0316055433", year: 2024 },
-            { title: "The House of the Scorpion (Matteo Alacran)", author: "Farmer, Nancy", isbn: "0689852231", year: 2024 },
-            { title: "The Challenger Sale", author: "Dixon, Matthew", isbn: "1591844355", year: 2024 },
-            { title: "Death's End (Remembrance of Earth's Past)", author: "Cixin, Liu", isbn: "0765377101", year: 2024 },
-            { title: "The Dark Forest (Remembrance of Earth's Past)", author: "Cixin, Liu", isbn: "", year: 2024 },
-            { title: "Copenhagen", author: "Frayn, Michael", isbn: "", year: 2024 },
-            { title: "The Time of Our Singing", author: "Powers, Richard", isbn: "0099453835", year: 2024 },
-            { title: "Dead-End Memories", author: "Yoshimoto, Banana", isbn: "1640093699", year: 2024 },
-            { title: "A Thousand Years of Good Prayers", author: "Li, Yiyun", isbn: "081297333X", year: 2024 },
-            { title: "Siddhartha", author: "Hesse, Hermann", isbn: "", year: 2024 },
-            { title: "Interpreter of Maladies", author: "Lahiri, Jhumpa", isbn: "", year: 2024 },
-            { title: "What If We Were Somewhere Else", author: "Fox, Wendy J.", isbn: "1951631056", year: 2024 },
-            { title: "The World's Religions", author: "Smith, Huston", isbn: "", year: 2024 },
-            { title: "Seize the Day", author: "Bellow, Saul", isbn: "0142437611", year: 2024 },
-            { title: "The Love of the Last Tycoon", author: "Fitzgerald, F. Scott", isbn: "0020199856", year: 2024 },
-            { title: "Miramar", author: "Mahfouz, Naguib", isbn: "", year: 2024 },
-            { title: "The Essence of Shinto", author: "Yamakage, Motohisa", isbn: "4770030444", year: 2024 },
-            { title: "Stories of Your Life and Others", author: "Chiang, Ted", isbn: "0330426648", year: 2024 },
-            { title: "Buffett", author: "Lowenstein, Roger", isbn: "0385484917", year: 2023 },
-            { title: "Code", author: "Petzold, Charles", isbn: "0735611319", year: 2023 },
-            { title: "Harry Potter and the Deathly Hallows", author: "Rowling, J.K.", isbn: "", year: 2023 },
-            { title: "The Three-Body Problem (Remembrance of Earth's Past)", author: "Cixin, Liu", isbn: "", year: 2023 },
-            { title: "A Man of Misconceptions", author: "Glassie, John", isbn: "1594488711", year: 2023 },
-            { title: "The Autobiography of Johann Wolfgang Goethe", author: "Goethe, Johann Wolfgang von", isbn: "0226300579", year: 2023 },
-            { title: "Company Of One", author: "Jarvis, Paul", isbn: "1328972356", year: 2023 },
-            { title: "Bullshit Jobs: A Theory", author: "Graeber, David", isbn: "150114331X", year: 2023 },
-            { title: "None Dare Call It Conspiracy", author: "Allen, Gary", isbn: "0944379532", year: 2023 },
-            { title: "Harry Potter and the Half-Blood Prince", author: "Rowling, J.K.", isbn: "", year: 2023 },
-            { title: "Secrets of Sand Hill Road", author: "Kupor, Scott", isbn: "059308358X", year: 2023 },
-            { title: "Harry Potter and the Goblet of Fire", author: "Rowling, J.K.", isbn: "0439139597", year: 2023 },
-            { title: "Extreme Ownership", author: "Willink, Jocko", isbn: "1250067057", year: 2023 },
-            { title: "Harry Potter and the Prisoner of Azkaban", author: "Rowling, J.K.", isbn: "043965548X", year: 2023 },
-            { title: "Harry Potter and the Chamber of Secrets", author: "Rowling, J.K.", isbn: "", year: 2023 },
-            { title: "Never Finished", author: "Goggins, David", isbn: "154453406X", year: 2023 },
-            { title: "Born to Run 2", author: "McDougall, Christopher", isbn: "1524712345", year: 2023 },
-            { title: "11/22/63", author: "King, Stephen", isbn: "1451627289", year: 2025 },
-            { title: "The Lucifer Effect", author: "Zimbardo, Philip G.", isbn: "1400064112", year: 2022 },
-            { title: "Our Mathematical Universe", author: "Tegmark, Max", isbn: "1846144760", year: 2022 },
-            { title: "Harry Potter and the Sorcerer's Stone", author: "Rowling, J.K.", isbn: "", year: 2022 },
-            { title: "The Four Horsemen", author: "Dawkins, Richard; Dennett, Daniel; Harris, Sam; Hitchens, Christopher", isbn: "0525511962", year: 2022 },
-            { title: "Justice", author: "Sandel, Michael J.", isbn: "0374180652", year: 2022 },
-            { title: "Fermat's Enigma", author: "Singh, Simon", isbn: "0385493622", year: 2022 },
-            { title: "In Pursuit of the Traveling Salesman", author: "Cook, William J.", isbn: "0691152705", year: 2022 },
-            { title: "The Hitchhiker's Guide to the Galaxy", author: "Adams, Douglas", isbn: "", year: 2022 },
-            { title: "Contact", author: "Sagan, Carl", isbn: "2266079999", year: 2022 },
-            { title: "The Founders", author: "Soni, Jimmy", isbn: "1501197266", year: 2022 },
-            { title: "Basic Economics", author: "Sowell, Thomas", isbn: "0465081452", year: 2022 },
-            { title: "The Information", author: "Gleick, James", isbn: "0375423729", year: 2022 },
-            { title: "The Code Book", author: "Singh, Simon", isbn: "0385495323", year: 2022 },
-            { title: "Harry Potter and the Order of the Phoenix", author: "Rowling, J.K.", isbn: "0439686520", year: 2022 },
-            { title: "Sea Stories", author: "McRaven, William H.", isbn: "1538715538", year: 2022 },
-            { title: "Thinking, Fast and Slow", author: "Kahneman, Daniel", isbn: "0374275637", year: 2022 },
-            { title: "The Stranger Beside Me: Ted Bundy", author: "Rule, Ann", isbn: "0451203267", year: 2022 },
-            { title: "The Meritocracy Trap", author: "Markovits, Daniel", isbn: "0735221995", year: 2022 },
-            { title: "The Long Walk", author: "Rawicz, Slavomir", isbn: "1592289444", year: 2022 },
-            { title: "Being You", author: "Seth, Anil", isbn: "0571337708", year: 2022 },
-            { title: "The Myth of Sisyphus", author: "Camus, Albert", isbn: "0141182008", year: 2022 },
-            { title: "Eternity", author: "Trevelyan", isbn: "", year: 2022 },
-            { title: "One Up On Wall Street", author: "Lynch, Peter", isbn: "0743200403", year: 2022 },
-            { title: "As a Man Thinketh", author: "Allen, James", isbn: "1585425648", year: 2022 },
-            { title: "The Spy and the Traitor", author: "Macintyre, Ben", isbn: "0771060335", year: 2022 },
-            { title: "A Mind at Play", author: "Soni, Jimmy", isbn: "1476766681", year: 2022 },
-            { title: "How to Become a Straight-A Student", author: "Newport, Cal", isbn: "0767922719", year: 2022 },
-            { title: "No Longer Human", author: "Dazai, Osamu", isbn: "", year: 2022 },
-            { title: "Discrimination and Disparities", author: "Sowell, Thomas", isbn: "", year: 2022 },
-            { title: "In Cold Blood", author: "Capote, Truman", isbn: "0679745580", year: 2022 },
-            { title: "The Double Helix", author: "Watson, James D.", isbn: "0451037707", year: 2022 },
-            { title: "Never Split the Difference", author: "Voss, Chris", isbn: "0062407805", year: 2022 },
-            { title: "The Mathematical Theory of Communication", author: "Shannon, Claude", isbn: "0252725484", year: 2022 },
-            { title: "Behave", author: "Sapolsky, Robert M.", isbn: "1594205078", year: 2022 },
-            { title: "Finding Ultra", author: "Roll, Rich", isbn: "0307952207", year: 2022 },
-            { title: "Ishmael", author: "Quinn, Daniel", isbn: "", year: 2022 },
-            { title: "12 Rules for Life", author: "Peterson, Jordan B.", isbn: "0345816021", year: 2022 },
-            { title: "The Road to Reality", author: "Penrose, Roger", isbn: "0679776311", year: 2022 },
-            { title: "Born to Run", author: "McDougall, Christopher", isbn: "", year: 2022 },
-            { title: "Can't Hurt Me", author: "Goggins, David", isbn: "1544512260", year: 2022 },
-            { title: "The Five People You Meet in Heaven", author: "Albom, Mitch", isbn: "0786868716", year: 2022 },
-            { title: "Gödel, Escher, Bach", author: "Hofstadter, Douglas R.", isbn: "0465026567", year: 2022 },
-            { title: "The Last Lecture", author: "Pausch, Randy", isbn: "", year: 2022 },
-            { title: "It's Kind of a Funny Story", author: "Vizzini, Ned", isbn: "078685197X", year: 2022 },
-            { title: "A Short History of Nearly Everything", author: "Bryson, Bill", isbn: "076790818X", year: 2022 },
-            { title: "Why Nations Fail", author: "Acemoğlu, Daron", isbn: "0307719219", year: 2022 },
-            { title: "The Stranger", author: "Camus, Albert", isbn: "", year: 2022 },
-            { title: "Mere Christianity", author: "Lewis, C.S.", isbn: "", year: 2022 },
-            { title: "Scale", author: "West, Geoffrey B.", isbn: "1594205582", year: 2022 },
-            { title: "Man's Search for Meaning", author: "Frankl, Viktor E.", isbn: "080701429X", year: 2022 },
-            { title: "The Righteous Mind", author: "Haidt, Jonathan", isbn: "", year: 2022 },
-            { title: "Lone Survivor", author: "Luttrell, Marcus", isbn: "0316067598", year: 2022 },
-            { title: "Deep Work", author: "Newport, Cal", isbn: "1455586692", year: 2022 },
-            { title: "Zero to One", author: "Thiel, Peter", isbn: "0804139296", year: 2022 },
-            { title: "The Brothers Karamazov", author: "Dostoevsky, Fyodor", isbn: "0374528373", year: 2022 },
-            { title: "Things Hidden Since the Foundation of the World", author: "Girard, René", isbn: "0804722153", year: 2022 },
-            { title: "The Stand", author: "King, Stephen", isbn: "0307947300", year: 2022 }
-        ];
+		<div class="fade-in" style="animation-delay: 0ms;">
+			<div class="page-heading">All Books</div>
+			<div id="yearsContainer"></div>
+		</div>
+	</main>
 
-        // Extract last name from author field
-        function getLastName(author) {
-            // Split by comma - format is "LastName, FirstName"
-            const parts = author.split(',');
-            return parts[0].trim().toLowerCase();
-        }
+	<footer>
+		<p>&copy; 2025 James Park</p>
+	</footer>
 
-        // Group books by year
-        const booksByYear = {};
-        books.forEach(book => {
-            const displayYear = book.year >= 2023 ? book.year : '2022 and Before';
-            if (!booksByYear[displayYear]) {
-                booksByYear[displayYear] = [];
-            }
-            booksByYear[displayYear].push(book);
-        });
+	<script>
+		const manualCovers = {
+			"Harry Potter and the Order of the Phoenix": "order-of-the-phoenix.jpg",
+			"12 Rules for Life": "12-rules-for-life.jpg",
+			"A Mind at Play": "a-mind-at-play.jpg",
+			"Being You": "being-you.jpg",
+			"Born to Run": "born-to-run.jpg",
+			"Can't Hurt Me": "cant-hurt-me.jpg",
+			"Harry Potter and the Chamber of Secrets": "chamber-of-secrets.jpg",
+			"Copenhagen": "copenhagen.jpg",
+			"Harry Potter and the Deathly Hallows": "deathly-hallows.jpg",
+			"Discrimination and Disparities": "discrimination-and-disparities.jpg",
+			"Eternity": "eternity.jpg",
+			"Evolution of Desire": "evolution-of-desire.jpg",
+			"Harry Potter and the Half-Blood Prince": "half-blood-prince.jpg",
+			"How to Die": "how-to-die.jpg",
+			"In Pursuit of the Traveling Salesman": "in-pursuit-of-the-traveling-salesman.jpg",
+			"Interpreter of Maladies": "interpreter-of-maladies.jpg",
+			"IQ (Independence Hall)": "iq-independence-hall.jpg",
+			"Ishmael": "ishmael.jpg",
+			"Mere Christianity": "mere-christianity.jpg",
+			"Miramar": "miramar.jpg",
+			"No Longer Human": "no-longer-human.jpg",
+			"Harry Potter and the Prisoner of Azkaban": "prisoner-of-azkaban.jpg",
+			"Finding Ultra": "rich-roll.jpg",
+			"Running in Silence": "running-in-silence.jpg",
+			"Sea Stories": "sea-stories.jpg",
+			"Secrets of Sand Hill Road": "secrets-of-sand-hill-road.jpg",
+			"Siddhartha": "siddhartha.jpg",
+			"Harry Potter and the Sorcerer's Stone": "sorcerers-stone.jpg",
+			"Synchronicity": "synchronicity.jpg",
+			"The Challenger Customer": "the-challeger-customer.jpg",
+			"The Dark Forest (Remembrance of Earth's Past)": "the-dark-forest.jpg",
+			"The Death of Ivan Ilych": "the-death-of-ivan-ilyich.jpg",
+			"The Double Helix": "the-double-helix.jpg",
+			"The Five People You Meet in Heaven": "the-five-people-you-meet-in-heaven.jpg",
+			"The Founders": "the-founders.jpg",
+			"The Four Horsemen": "the-four-horsemen.jpg",
+			"The Hitchhiker's Guide to the Galaxy": "the-hitchhikers-guide-to-the-galaxy.jpg",
+			"The Killer Across the Table": "the-killer-across-the-table.jpg",
+			"The Last Lecture": "the-last-lecture.jpg",
+			"The Meritocracy Trap": "the-meritocracy-trap.jpg",
+			"The Righteous Mind": "the-righteous-mind.jpg",
+			"The Spy and the Traitor": "the-spy-and-the-traitor.jpg",
+			"The Stranger": "the-stranger.jpg",
+			"The Three-Body Problem (Remembrance of Earth's Past)": "the-three-body-problem.jpg",
+			"The Time of Our Singing": "the-time-of-our-singing.jpg",
+			"The World's Religions": "the-worlds-religions.jpg",
+			"Thinking, Fast and Slow": "thinking-fast-and-slow.jpg",
+			"Tied In": "tied-in.jpg",
+			"Work": "work.jpg",
+			"The Armageddon Conspiracy": "the-armageddon-conspiracy.jpg"
+		};
 
-        // Sort books within each year by author last name
-        Object.keys(booksByYear).forEach(year => {
-            booksByYear[year].sort((a, b) => {
-                const lastNameA = getLastName(a.author);
-                const lastNameB = getLastName(b.author);
-                return lastNameA.localeCompare(lastNameB);
-            });
-        });
+		const books = [
+			{ title: "The Secret History", author: "Tartt, Donna", isbn: "1400031702", year: 2025 },
+			{ title: "After", author: "Greyson, Bruce", isbn: "1250263034", year: 2025 },
+			{ title: "Facebook", author: "Levy, Steven", isbn: "0735213151", year: 2025 },
+			{ title: "The Technological Republic", author: "Karp, Alexander C.", isbn: "0593798694", year: 2025 },
+			{ title: "The Mathematical Universe", author: "Dunham, William", isbn: "0471176613", year: 2025 },
+			{ title: "Synchronicity", author: "Halpern, Paul", isbn: "1541673638", year: 2025 },
+			{ title: "What I Believe", author: "Tolstoy, Leo", isbn: "1402185235", year: 2025 },
+			{ title: "A Confession", author: "Tolstoy, Leo", isbn: "1598184717", year: 2025 },
+			{ title: "The Death of Ivan Ilych", author: "Tolstoy, Leo", isbn: "", year: 2025 },
+			{ title: "She Said", author: "Kantor, Jodi", isbn: "0525560343", year: 2025 },
+			{ title: "Creativity, Inc.", author: "Catmull, Ed", isbn: "0812993012", year: 2025 },
+			{ title: "Evolution of Desire", author: "Haven, Cynthia L.", isbn: "1611862833", year: 2025 },
+			{ title: "The Number Devil", author: "Enzensberger, Hans Magnus", isbn: "0805062998", year: 2025 },
+			{ title: "The Armageddon Conspiracy", author: "Hockney, Mike", isbn: "1847994741", year: 2025 },
+			{ title: "Spies, Lies, and Algorithms", author: "Zegart, Amy B.", isbn: "0691147132", year: 2025 },
+			{ title: "The Mass Psychology of Fascism", author: "Reich, Wilhelm", isbn: "0374508844", year: 2025 },
+			{ title: "The Revolt of the Public and the Crisis of Authority in the New Millennium", author: "Gurri, Martin", isbn: "1732265143", year: 2025 },
+			{ title: "The Killer Across the Table", author: "Douglas, John E.", isbn: "0062939505", year: 2025 },
+			{ title: "Quadrivium", author: "Martineau, John", isbn: "0802778135", year: 2025 },
+			{ title: "The Art of Adaptation", author: "Seger, Linda", isbn: "0805016260", year: 2025 },
+			{ title: "Passport to Magonia", author: "Vallée, Jacques F.", isbn: "0809237962", year: 2025 },
+			{ title: "Become What You Are", author: "Watts, Alan W.", isbn: "1570629404", year: 2025 },
+			{ title: "Running in Silence", author: "Steil, Rachael Rose", isbn: "1633933407", year: 2025 },
+			{ title: "IQ (Independence Hall)", author: "Smith, Roland", isbn: "", year: 2025 },
+			{ title: "How to Die", author: "Seneca", isbn: "0691175578", year: 2025 },
+			{ title: "Maps of Meaning", author: "Peterson, Jordan B.", isbn: "0415922224", year: 2025 },
+			{ title: "Life of Pi", author: "Martel, Yann", isbn: "0770430074", year: 2025 },
+			{ title: "Letters to a Young Contrarian", author: "Hitchens, Christopher", isbn: "0465030335", year: 2025 },
+			{ title: "Arguably", author: "Hitchens, Christopher", isbn: "0771041411", year: 2025 },
+			{ title: "Work", author: "Hanh, Thich Nhat", isbn: "", year: 2022 },
+			{ title: "Found (The Missing)", author: "Haddix, Margaret Peterson", isbn: "1416954171", year: 2025 },
+			{ title: "Natural Goodness", author: "Foot, Philippa", isbn: "019926547X", year: 2025 },
+			{ title: "Introduction to Algorithms", author: "Cormen, Thomas H.", isbn: "0262032937", year: 2022 },
+			{ title: "The Fall", author: "Camus, Albert", isbn: "0679720227", year: 2025 },
+			{ title: "Simulacra and Simulation", author: "Baudrillard, Jean", isbn: "0472065211", year: 2025 },
+			{ title: "Tied In", author: "Goldberg, Lee", isbn: "1453716106", year: 2025 },
+			{ title: "Slow Productivity", author: "Newport, Cal", isbn: "0593544854", year: 2024 },
+			{ title: "The Goldfinch", author: "Tartt, Donna", isbn: "0316055433", year: 2024 },
+			{ title: "The House of the Scorpion (Matteo Alacran)", author: "Farmer, Nancy", isbn: "0689852231", year: 2024 },
+			{ title: "The Challenger Sale", author: "Dixon, Matthew", isbn: "1591844355", year: 2024 },
+			{ title: "Death's End (Remembrance of Earth's Past)", author: "Cixin, Liu", isbn: "0765377101", year: 2024 },
+			{ title: "The Dark Forest (Remembrance of Earth's Past)", author: "Cixin, Liu", isbn: "", year: 2024 },
+			{ title: "Copenhagen", author: "Frayn, Michael", isbn: "", year: 2024 },
+			{ title: "The Time of Our Singing", author: "Powers, Richard", isbn: "0099453835", year: 2024 },
+			{ title: "Dead-End Memories", author: "Yoshimoto, Banana", isbn: "1640093699", year: 2024 },
+			{ title: "A Thousand Years of Good Prayers", author: "Li, Yiyun", isbn: "081297333X", year: 2024 },
+			{ title: "Siddhartha", author: "Hesse, Hermann", isbn: "", year: 2024 },
+			{ title: "Interpreter of Maladies", author: "Lahiri, Jhumpa", isbn: "", year: 2024 },
+			{ title: "What If We Were Somewhere Else", author: "Fox, Wendy J.", isbn: "1951631056", year: 2024 },
+			{ title: "The World's Religions", author: "Smith, Huston", isbn: "", year: 2024 },
+			{ title: "Seize the Day", author: "Bellow, Saul", isbn: "0142437611", year: 2024 },
+			{ title: "The Love of the Last Tycoon", author: "Fitzgerald, F. Scott", isbn: "0020199856", year: 2024 },
+			{ title: "Miramar", author: "Mahfouz, Naguib", isbn: "", year: 2024 },
+			{ title: "The Essence of Shinto", author: "Yamakage, Motohisa", isbn: "4770030444", year: 2024 },
+			{ title: "Stories of Your Life and Others", author: "Chiang, Ted", isbn: "0330426648", year: 2024 },
+			{ title: "Buffett", author: "Lowenstein, Roger", isbn: "0385484917", year: 2023 },
+			{ title: "Code", author: "Petzold, Charles", isbn: "0735611319", year: 2023 },
+			{ title: "Harry Potter and the Deathly Hallows", author: "Rowling, J.K.", isbn: "", year: 2023 },
+			{ title: "The Three-Body Problem (Remembrance of Earth's Past)", author: "Cixin, Liu", isbn: "", year: 2023 },
+			{ title: "A Man of Misconceptions", author: "Glassie, John", isbn: "1594488711", year: 2023 },
+			{ title: "The Autobiography of Johann Wolfgang Goethe", author: "Goethe, Johann Wolfgang von", isbn: "0226300579", year: 2023 },
+			{ title: "Company Of One", author: "Jarvis, Paul", isbn: "1328972356", year: 2023 },
+			{ title: "Bullshit Jobs: A Theory", author: "Graeber, David", isbn: "150114331X", year: 2023 },
+			{ title: "None Dare Call It Conspiracy", author: "Allen, Gary", isbn: "0944379532", year: 2023 },
+			{ title: "Harry Potter and the Half-Blood Prince", author: "Rowling, J.K.", isbn: "", year: 2023 },
+			{ title: "Secrets of Sand Hill Road", author: "Kupor, Scott", isbn: "059308358X", year: 2023 },
+			{ title: "Harry Potter and the Goblet of Fire", author: "Rowling, J.K.", isbn: "0439139597", year: 2023 },
+			{ title: "Extreme Ownership", author: "Willink, Jocko", isbn: "1250067057", year: 2023 },
+			{ title: "Harry Potter and the Prisoner of Azkaban", author: "Rowling, J.K.", isbn: "043965548X", year: 2023 },
+			{ title: "Harry Potter and the Chamber of Secrets", author: "Rowling, J.K.", isbn: "", year: 2023 },
+			{ title: "Never Finished", author: "Goggins, David", isbn: "154453406X", year: 2023 },
+			{ title: "Born to Run 2", author: "McDougall, Christopher", isbn: "1524712345", year: 2023 },
+			{ title: "11/22/63", author: "King, Stephen", isbn: "1451627289", year: 2025 },
+			{ title: "The Lucifer Effect", author: "Zimbardo, Philip G.", isbn: "1400064112", year: 2022 },
+			{ title: "Our Mathematical Universe", author: "Tegmark, Max", isbn: "1846144760", year: 2022 },
+			{ title: "Harry Potter and the Sorcerer's Stone", author: "Rowling, J.K.", isbn: "", year: 2022 },
+			{ title: "The Four Horsemen", author: "Dawkins, Richard; Dennett, Daniel; Harris, Sam; Hitchens, Christopher", isbn: "0525511962", year: 2022 },
+			{ title: "Justice", author: "Sandel, Michael J.", isbn: "0374180652", year: 2022 },
+			{ title: "Fermat's Enigma", author: "Singh, Simon", isbn: "0385493622", year: 2022 },
+			{ title: "In Pursuit of the Traveling Salesman", author: "Cook, William J.", isbn: "0691152705", year: 2022 },
+			{ title: "The Hitchhiker's Guide to the Galaxy", author: "Adams, Douglas", isbn: "", year: 2022 },
+			{ title: "Contact", author: "Sagan, Carl", isbn: "2266079999", year: 2022 },
+			{ title: "The Founders", author: "Soni, Jimmy", isbn: "1501197266", year: 2022 },
+			{ title: "Basic Economics", author: "Sowell, Thomas", isbn: "0465081452", year: 2022 },
+			{ title: "The Information", author: "Gleick, James", isbn: "0375423729", year: 2022 },
+			{ title: "The Code Book", author: "Singh, Simon", isbn: "0385495323", year: 2022 },
+			{ title: "Harry Potter and the Order of the Phoenix", author: "Rowling, J.K.", isbn: "0439686520", year: 2022 },
+			{ title: "Sea Stories", author: "McRaven, William H.", isbn: "1538715538", year: 2022 },
+			{ title: "Thinking, Fast and Slow", author: "Kahneman, Daniel", isbn: "0374275637", year: 2022 },
+			{ title: "The Stranger Beside Me: Ted Bundy", author: "Rule, Ann", isbn: "0451203267", year: 2022 },
+			{ title: "The Meritocracy Trap", author: "Markovits, Daniel", isbn: "0735221995", year: 2022 },
+			{ title: "The Long Walk", author: "Rawicz, Slavomir", isbn: "1592289444", year: 2022 },
+			{ title: "Being You", author: "Seth, Anil", isbn: "0571337708", year: 2022 },
+			{ title: "The Myth of Sisyphus", author: "Camus, Albert", isbn: "0141182008", year: 2022 },
+			{ title: "Eternity", author: "Trevelyan", isbn: "", year: 2022 },
+			{ title: "One Up On Wall Street", author: "Lynch, Peter", isbn: "0743200403", year: 2022 },
+			{ title: "As a Man Thinketh", author: "Allen, James", isbn: "1585425648", year: 2022 },
+			{ title: "The Spy and the Traitor", author: "Macintyre, Ben", isbn: "0771060335", year: 2022 },
+			{ title: "A Mind at Play", author: "Soni, Jimmy", isbn: "1476766681", year: 2022 },
+			{ title: "How to Become a Straight-A Student", author: "Newport, Cal", isbn: "0767922719", year: 2022 },
+			{ title: "No Longer Human", author: "Dazai, Osamu", isbn: "", year: 2022 },
+			{ title: "Discrimination and Disparities", author: "Sowell, Thomas", isbn: "", year: 2022 },
+			{ title: "In Cold Blood", author: "Capote, Truman", isbn: "0679745580", year: 2022 },
+			{ title: "The Double Helix", author: "Watson, James D.", isbn: "0451037707", year: 2022 },
+			{ title: "Never Split the Difference", author: "Voss, Chris", isbn: "0062407805", year: 2022 },
+			{ title: "The Mathematical Theory of Communication", author: "Shannon, Claude", isbn: "0252725484", year: 2022 },
+			{ title: "Behave", author: "Sapolsky, Robert M.", isbn: "1594205078", year: 2022 },
+			{ title: "Finding Ultra", author: "Roll, Rich", isbn: "0307952207", year: 2022 },
+			{ title: "Ishmael", author: "Quinn, Daniel", isbn: "", year: 2022 },
+			{ title: "12 Rules for Life", author: "Peterson, Jordan B.", isbn: "0345816021", year: 2022 },
+			{ title: "The Road to Reality", author: "Penrose, Roger", isbn: "0679776311", year: 2022 },
+			{ title: "Born to Run", author: "McDougall, Christopher", isbn: "", year: 2022 },
+			{ title: "Can't Hurt Me", author: "Goggins, David", isbn: "1544512260", year: 2022 },
+			{ title: "The Five People You Meet in Heaven", author: "Albom, Mitch", isbn: "0786868716", year: 2022 },
+			{ title: "Gödel, Escher, Bach", author: "Hofstadter, Douglas R.", isbn: "0465026567", year: 2022 },
+			{ title: "The Last Lecture", author: "Pausch, Randy", isbn: "", year: 2022 },
+			{ title: "It's Kind of a Funny Story", author: "Vizzini, Ned", isbn: "078685197X", year: 2022 },
+			{ title: "A Short History of Nearly Everything", author: "Bryson, Bill", isbn: "076790818X", year: 2022 },
+			{ title: "Why Nations Fail", author: "Acemoğlu, Daron", isbn: "0307719219", year: 2022 },
+			{ title: "The Stranger", author: "Camus, Albert", isbn: "", year: 2022 },
+			{ title: "Mere Christianity", author: "Lewis, C.S.", isbn: "", year: 2022 },
+			{ title: "Scale", author: "West, Geoffrey B.", isbn: "1594205582", year: 2022 },
+			{ title: "Man's Search for Meaning", author: "Frankl, Viktor E.", isbn: "080701429X", year: 2022 },
+			{ title: "The Righteous Mind", author: "Haidt, Jonathan", isbn: "", year: 2022 },
+			{ title: "Lone Survivor", author: "Luttrell, Marcus", isbn: "0316067598", year: 2022 },
+			{ title: "Deep Work", author: "Newport, Cal", isbn: "1455586692", year: 2022 },
+			{ title: "Zero to One", author: "Thiel, Peter", isbn: "0804139296", year: 2022 },
+			{ title: "The Brothers Karamazov", author: "Dostoevsky, Fyodor", isbn: "0374528373", year: 2022 },
+			{ title: "Things Hidden Since the Foundation of the World", author: "Girard, René", isbn: "0804722153", year: 2022 },
+			{ title: "The Stand", author: "King, Stephen", isbn: "0307947300", year: 2022 }
+		];
 
-        const years = Object.keys(booksByYear).sort((a, b) => {
-            if (a === '2022 and Before') return 1;
-            if (b === '2022 and Before') return -1;
-            return b - a;
-        });
+		function getLastName(author) {
+			return author.split(',')[0].trim().toLowerCase();
+		}
 
-        const container = document.getElementById('yearsContainer');
-        years.forEach(year => {
-            const yearSection = document.createElement('div');
-            yearSection.className = 'year-section';
+		const booksByYear = {};
+		books.forEach(book => {
+			const displayYear = book.year >= 2023 ? book.year : '2022 and Before';
+			if (!booksByYear[displayYear]) booksByYear[displayYear] = [];
+			booksByYear[displayYear].push(book);
+		});
 
-            const yearHeader = document.createElement('h2');
-            yearHeader.className = 'year-header';
-            yearHeader.textContent = year;
-            yearSection.appendChild(yearHeader);
+		Object.keys(booksByYear).forEach(year => {
+			booksByYear[year].sort((a, b) => getLastName(a.author).localeCompare(getLastName(b.author)));
+		});
 
-            const grid = document.createElement('div');
-            grid.className = 'books-grid';
+		const years = Object.keys(booksByYear).sort((a, b) => {
+			if (a === '2022 and Before') return 1;
+			if (b === '2022 and Before') return -1;
+			return b - a;
+		});
 
-            booksByYear[year].forEach(book => {
-                const bookItem = document.createElement('div');
-                bookItem.className = 'book-item';
+		const container = document.getElementById('yearsContainer');
+		years.forEach(year => {
+			const yearSection = document.createElement('div');
+			yearSection.className = 'year-section';
 
-                // Check if we have a manual cover for this book
-                const manualCover = manualCovers[book.title];
+			const yearHeader = document.createElement('h2');
+			yearHeader.className = 'year-header';
+			yearHeader.textContent = year;
+			yearSection.appendChild(yearHeader);
 
-                if (manualCover) {
-                    // Use manual cover image
-                    const img = document.createElement('img');
-                    img.className = 'book-cover';
-                    img.src = `../img/book-covers/${manualCover}`;
-                    img.alt = book.title;
-                    img.onerror = function () {
-                        this.style.display = 'none';
-                        const placeholder = document.createElement('div');
-                        placeholder.className = 'book-cover error';
-                        placeholder.textContent = 'No cover';
-                        this.parentNode.insertBefore(placeholder, this);
-                    };
-                    bookItem.appendChild(img);
-                } else if (book.isbn) {
-                    // Use Open Library API
-                    const img = document.createElement('img');
-                    img.className = 'book-cover';
-                    img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
-                    img.alt = book.title;
-                    img.onerror = function () {
-                        this.style.display = 'none';
-                        const placeholder = document.createElement('div');
-                        placeholder.className = 'book-cover error';
-                        placeholder.textContent = 'No cover';
-                        this.parentNode.insertBefore(placeholder, this);
-                    };
-                    bookItem.appendChild(img);
-                } else {
-                    // No cover available
-                    const placeholder = document.createElement('div');
-                    placeholder.className = 'book-cover error';
-                    placeholder.textContent = 'No cover';
-                    bookItem.appendChild(placeholder);
-                }
+			const grid = document.createElement('div');
+			grid.className = 'books-grid';
 
-                const title = document.createElement('div');
-                title.className = 'book-title';
-                title.textContent = book.title;
+			booksByYear[year].forEach(book => {
+				const bookItem = document.createElement('div');
+				bookItem.className = 'book-item';
 
-                const author = document.createElement('div');
-                author.className = 'book-author';
-                author.textContent = book.author;
+				const manualCover = manualCovers[book.title];
 
-                bookItem.appendChild(title);
-                bookItem.appendChild(author);
+				if (manualCover) {
+					const img = document.createElement('img');
+					img.className = 'book-cover';
+					img.src = `../img/book-covers/${manualCover}`;
+					img.alt = book.title;
+					img.onerror = function() {
+						this.style.display = 'none';
+						const ph = document.createElement('div');
+						ph.className = 'book-cover-error';
+						ph.textContent = 'No cover';
+						this.parentNode.insertBefore(ph, this);
+					};
+					bookItem.appendChild(img);
+				} else if (book.isbn) {
+					const img = document.createElement('img');
+					img.className = 'book-cover';
+					img.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
+					img.alt = book.title;
+					img.onerror = function() {
+						this.style.display = 'none';
+						const ph = document.createElement('div');
+						ph.className = 'book-cover-error';
+						ph.textContent = 'No cover';
+						this.parentNode.insertBefore(ph, this);
+					};
+					bookItem.appendChild(img);
+				} else {
+					const ph = document.createElement('div');
+					ph.className = 'book-cover-error';
+					ph.textContent = 'No cover';
+					bookItem.appendChild(ph);
+				}
 
-                grid.appendChild(bookItem);
-            });
+				const title = document.createElement('div');
+				title.className = 'book-title';
+				title.textContent = book.title;
 
-            yearSection.appendChild(grid);
-            container.appendChild(yearSection);
-        });
-    </script>
+				const author = document.createElement('div');
+				author.className = 'book-author';
+				author.textContent = book.author;
+
+				bookItem.appendChild(title);
+				bookItem.appendChild(author);
+				grid.appendChild(bookItem);
+			});
+
+			yearSection.appendChild(grid);
+			container.appendChild(yearSection);
+		});
+	</script>
 </body>
 
 </html>
