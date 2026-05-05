@@ -318,6 +318,97 @@ hr {
   font-weight: 600;
 }
 
+/* Project modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  max-width: 360px;
+  width: 90%;
+  position: relative;
+  transform: translateY(6px);
+  transition: transform 0.18s;
+}
+
+.modal-overlay.open .modal {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--fg3);
+  font-family: inherit;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.modal-close:hover {
+  color: var(--fg);
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 0.5rem;
+  padding-right: 1.5rem;
+}
+
+.modal-desc {
+  font-size: 13px;
+  color: var(--fg2);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.modal-link {
+  font-size: 13px;
+  color: var(--fg);
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.project-list .project-link {
+  color: var(--fg);
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.project-list .project-link:hover {
+  color: var(--fg2);
+}
+
+.project-list li {
+  cursor: pointer;
+}
+
 /* Mobile */
 @media (max-width: 600px) {
   .bio-section {
