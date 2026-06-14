@@ -85,9 +85,25 @@ footer {
   line-height: 1;
 }
 
-.name-link {
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.info-icon {
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  text-decoration: underline;
+  color: var(--fg3);
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.info-icon:hover {
+  color: var(--fg);
 }
 
 h1, h2, h3 {
@@ -165,7 +181,7 @@ pre {
   flex: 1;
 }
 
-.bio-text .name {
+.bio-text .name-row {
   margin-bottom: 0.5rem;
 }
 
@@ -425,6 +441,10 @@ hr {
     align-items: center;
     text-align: center;
     gap: 0.75rem;
+  }
+
+  .name-row {
+    justify-content: center;
   }
 
   .profile-image {
