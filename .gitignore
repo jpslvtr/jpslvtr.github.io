@@ -2,3 +2,9 @@
 CLAUDE.md
 STYLE_GUIDE.md
 .DS_Store
+
+# Claude, scratch (wm), and repo-packing artifacts
+CLAUDE.local.md
+wm*
+repomix*
+repopack*
