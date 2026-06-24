@@ -20,18 +20,8 @@
 </head>
 
 <body>
-	<button class="theme-toggle" id="themeBtn" onclick="
-		const d = document.documentElement;
-		const on = d.classList.toggle('dark');
-		localStorage.setItem('theme', on ? 'dark' : 'light');
-		this.textContent = on ? 'light' : 'dark';
-	">dark</button>
-	<script>
-		(function() {
-			const btn = document.getElementById('themeBtn');
-			if (btn && document.documentElement.classList.contains('dark')) btn.textContent = 'light';
-		})();
-	</script>
+	<button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle theme"></button>
+	<script src="../theme.js"></script>
 
 	<main>
 		<a class="back-link" href="../writing.html">← Back</a>
