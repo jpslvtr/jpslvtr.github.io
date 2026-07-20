@@ -98,21 +98,6 @@ footer {
   gap: 0.4rem;
 }
 
-.info-icon {
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: var(--fg3);
-  display: inline-flex;
-  align-items: center;
-  transition: color 0.15s;
-}
-
-.info-icon:hover {
-  color: var(--fg);
-}
-
 h1, h2, h3 {
   font-weight: 600;
   color: var(--fg);
@@ -218,15 +203,49 @@ pre {
   margin-top: 0.125rem;
 }
 
-/* Category label inside project lists */
-.cat-label {
+/* Notion-style toggles */
+.toggle {
+  margin-top: 1.25rem;
+}
+
+.toggle:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.toggle summary {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  list-style: none;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--fg3);
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  display: block;
+  padding: 0.25rem 0;
+  transition: color 0.15s;
+}
+
+.toggle summary::-webkit-details-marker {
+  display: none;
+}
+
+.toggle summary:hover {
+  color: var(--fg);
+}
+
+.toggle .chevron {
+  flex: none;
+  transition: transform 0.18s ease;
+}
+
+.toggle[open] .chevron {
+  transform: rotate(90deg);
+}
+
+.toggle[open] .project-list {
+  margin-top: 0.75rem;
+  animation: fadeIn 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* HR separator */
