@@ -37,11 +37,8 @@
 			<img class="profile-image" src="img/profile.png" alt="James Park">
 			<div class="bio-text">
 				<div class="name-row">
-						<span class="name">James Park</span>
-						<button class="info-icon" type="button" onclick="openModal('About', '', '')" aria-label="About James Park" title="About">
-							<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-						</button>
-					</div>
+					<span class="name">James Park</span>
+				</div>
 				<p style="margin-top: 0.75rem;">
 					<a href="https://www.linkedin.com/in/jpslvtr/" target="_blank">LinkedIn</a> &middot;
 					<a href="https://jpslvtr.substack.com/" target="_blank">Substack</a> &middot;
@@ -50,109 +47,125 @@
 			</div>
 		</div>
 
+		<p class="fade-in">Forward deployed engineer at <a href="https://www.atalanta.tech/" target="_blank" rel="noopener noreferrer">Atalanta Technologies</a>, a mathematical AI company bringing formal methods to critical systems. Previously a forward deployed software engineer at Palantir Technologies and a <a href="https://www.navy.com/careers-benefits/careers/intelligence-information-cryptology/cryptologic-warfare-officer" target="_blank" rel="noopener noreferrer">Cryptologic Warfare Officer (1810)</a> in the US Navy. I graduated from the US Naval Academy and Stanford GSB. At GSB, I focused on learning two things: entrepreneurship and <a href="https://www.amazon.com/Sorry-Late-Didnt-Want-Come/dp/1449499236/" target="_blank" rel="noopener noreferrer">how to be an extrovert</a>. Hobbies include ultrarunning, reading good books, and wedging philosophy into conversations.</p>
+
 		<div class="fade-in" style="animation-delay: 140ms;">
 			<hr>
-			<div class="section-header">
-			</div>
 
-			<span class="cat-label" style="margin-top: 0.75rem;">Startups</span>
-			<ul class="project-list">
-				<li onclick="openModal('Past Chances', 'A matchmaking site that reveals mutual crushes only if the feeling is mutual.', 'https://www.pastchances.com/')">
-					<span class="project-link">Past Chances</span>
-					<div class="project-desc">A matchmaking site that reveals mutual crushes only if the feeling is mutual.</div>
-				</li>
-				<li onclick="openModal('Scout', 'A mobile app for creating and discovering curated lists of places.', 'https://apps.apple.com/us/app/scout-people-places-plans/id6505122724/')">
-					<span class="project-link">Scout</span>
-					<div class="project-desc">A mobile app for creating and discovering curated lists of places.</div>
-				</li>
-				<li onclick="openModal('Revelio', 'An open source intelligence reporting platform. Features custom web crawlers, RAG-powered analysis, and real-time chain output streaming.', 'https://www.youtube.com/watch?v=qWLe6h_nIug&t=1251s')">
-					<span class="project-link">Revelio</span>
-					<div class="project-desc">An open source intelligence reporting platform. Features custom web crawlers, RAG-powered analysis, and real-time chain output streaming.</div>
-				</li>
-				<li onclick="openModal('Zzama', 'A pseudo-anonymous social Q&amp;A platform.', 'https://www.zzama.com/')">
-					<span class="project-link">Zzama</span>
-					<div class="project-desc">A pseudo-anonymous social Q&amp;A platform.</div>
-				</li>
-			</ul>
+			<details class="toggle">
+				<summary>
+					<svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+					<span>Startups</span>
+				</summary>
+				<ul class="project-list">
+					<li onclick="openModal('Past Chances', 'A matchmaking site that reveals mutual crushes only if the feeling is mutual.', 'https://www.pastchances.com/')">
+						<span class="project-link">Past Chances</span>
+						<div class="project-desc">A matchmaking site that reveals mutual crushes only if the feeling is mutual.</div>
+					</li>
+					<li onclick="openModal('Scout', 'A mobile app for creating and discovering curated lists of places.', 'https://apps.apple.com/us/app/scout-people-places-plans/id6505122724/')">
+						<span class="project-link">Scout</span>
+						<div class="project-desc">A mobile app for creating and discovering curated lists of places.</div>
+					</li>
+					<li onclick="openModal('Revelio', 'An open source intelligence reporting platform. Features custom web crawlers, RAG-powered analysis, and real-time chain output streaming.', 'https://www.youtube.com/watch?v=qWLe6h_nIug&t=1251s')">
+						<span class="project-link">Revelio</span>
+						<div class="project-desc">An open source intelligence reporting platform. Features custom web crawlers, RAG-powered analysis, and real-time chain output streaming.</div>
+					</li>
+					<li onclick="openModal('Zzama', 'A pseudo-anonymous social Q&amp;A platform.', 'https://www.zzama.com/')">
+						<span class="project-link">Zzama</span>
+						<div class="project-desc">A pseudo-anonymous social Q&amp;A platform.</div>
+					</li>
+					<li onclick="openModal('Syndicate', 'A private newsletter platform.', 'https://github.com/jpslvtr/syndicate/')">
+						<span class="project-link">Syndicate</span>
+						<div class="project-desc">A private newsletter platform.</div>
+					</li>
+					<li onclick="openModal('Scuttle', 'An anonymous communication platform for military commands, inspired by Yik Yak.', 'https://github.com/jpslvtr/scuttle')">
+						<span class="project-link">Scuttle</span>
+						<div class="project-desc">An anonymous communication platform for military commands, inspired by Yik Yak.</div>
+					</li>
+				</ul>
+			</details>
 
-			<span class="cat-label">Social Apps</span>
-			<ul class="project-list">
-				<li onclick="openModal('Syndicate', 'A private newsletter platform.', 'https://github.com/jpslvtr/syndicate/')">
-					<span class="project-link">Syndicate</span>
-					<div class="project-desc">A private newsletter platform.</div>
-				</li>
-				<li onclick="openModal('Scuttle', 'An anonymous communication platform for military commands, inspired by Yik Yak.', 'https://github.com/jpslvtr/scuttle')">
-					<span class="project-link">Scuttle</span>
-					<div class="project-desc">An anonymous communication platform for military commands, inspired by Yik Yak.</div>
-				</li>
-			</ul>
+			<details class="toggle">
+				<summary>
+					<svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+					<span>Security</span>
+				</summary>
+				<ul class="project-list">
+					<li onclick="openModal('PGP Cipher', 'Web-based PGP cipher that works with your keys. All encryption and decryption happens locally in your browser.', 'https://jpslvtr.com/pgp-cipher/')">
+						<span class="project-link">PGP Cipher</span>
+						<div class="project-desc">Web-based PGP cipher that works with your keys. All encryption and decryption happens locally in your browser.</div>
+					</li>
+					<li onclick="openModal('Inconvenient Chat', 'A social version of PGP Cipher. Browser-based public key encryption for secure messaging.', 'https://jpslvtr.com/inconvenient-chat/')">
+						<span class="project-link">Inconvenient Chat</span>
+						<div class="project-desc">A social version of PGP Cipher. Browser-based public key encryption for secure messaging.</div>
+					</li>
+					<li onclick="openModal('Network Security', 'A DNS spoofing tool capable of hijacking HTTP connections.', 'https://github.com/jpslvtr/cs155-proj3')">
+						<span class="project-link">Network Security</span>
+						<div class="project-desc">A DNS spoofing tool capable of hijacking HTTP connections.</div>
+					</li>
+					<li onclick="openModal('Web Security', 'Defenses against web attacks, to include cookie theft, cross-site request forgery (CSRF), and SQL injection.', 'https://github.com/jpslvtr/cs155-proj2')">
+						<span class="project-link">Web Security</span>
+						<div class="project-desc">Defenses against web attacks, to include cookie theft, cross-site request forgery (CSRF), and SQL injection.</div>
+					</li>
+				</ul>
+			</details>
 
-			<span class="cat-label">Security</span>
-			<ul class="project-list">
-				<li onclick="openModal('PGP Cipher', 'Web-based PGP cipher that works with your keys. All encryption and decryption happens locally in your browser.', 'https://jpslvtr.com/pgp-cipher/')">
-					<span class="project-link">PGP Cipher</span>
-					<div class="project-desc">Web-based PGP cipher that works with your keys. All encryption and decryption happens locally in your browser.</div>
-				</li>
-				<li onclick="openModal('Inconvenient Chat', 'A social version of PGP Cipher. Browser-based public key encryption for secure messaging.', 'https://jpslvtr.com/inconvenient-chat/')">
-					<span class="project-link">Inconvenient Chat</span>
-					<div class="project-desc">A social version of PGP Cipher. Browser-based public key encryption for secure messaging.</div>
-				</li>
-				<li onclick="openModal('Network Security', 'A DNS spoofing tool capable of hijacking HTTP connections.', 'https://github.com/jpslvtr/cs155-proj3')">
-					<span class="project-link">Network Security</span>
-					<div class="project-desc">A DNS spoofing tool capable of hijacking HTTP connections.</div>
-				</li>
-				<li onclick="openModal('Web Security', 'Defenses against web attacks, to include cookie theft, cross-site request forgery (CSRF), and SQL injection.', 'https://github.com/jpslvtr/cs155-proj2')">
-					<span class="project-link">Web Security</span>
-					<div class="project-desc">Defenses against web attacks, to include cookie theft, cross-site request forgery (CSRF), and SQL injection.</div>
-				</li>
-			</ul>
+			<details class="toggle">
+				<summary>
+					<svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+					<span>AI</span>
+				</summary>
+				<ul class="project-list">
+					<li onclick="openModal('Naval Vessel Classification', 'Fine-tuned ViT and Swin Transformer models on 8,908 ship images across five categories.', 'https://github.com/jpslvtr/cs231n-proj/blob/main/cs231n_final_report.pdf')">
+						<span class="project-link">Naval Vessel Classification</span>
+						<div class="project-desc">Fine-tuned ViT and Swin Transformer models on 8,908 ship images across five categories.</div>
+					</li>
+					<li onclick="openModal('Ship Arrival Regression Analysis', 'Models to optimize ship arrival patterns at Saqr Port using AIS data to avoid costly demurrage fees.', 'https://github.com/jpslvtr/sgbs210/blob/main/sgbs210.pdf')">
+						<span class="project-link">Ship Arrival Regression Analysis</span>
+						<div class="project-desc">Models to optimize ship arrival patterns at Saqr Port using AIS data to avoid costly demurrage fees.</div>
+					</li>
+				</ul>
+			</details>
 
-			<span class="cat-label">AI</span>
-			<ul class="project-list">
-				<li onclick="openModal('Naval Vessel Classification', 'Fine-tuned ViT and Swin Transformer models on 8,908 ship images across five categories.', 'https://github.com/jpslvtr/cs231n-proj/blob/main/cs231n_final_report.pdf')">
-					<span class="project-link">Naval Vessel Classification</span>
-					<div class="project-desc">Fine-tuned ViT and Swin Transformer models on 8,908 ship images across five categories.</div>
-				</li>
-				<li onclick="openModal('Ship Arrival Regression Analysis', 'Models to optimize ship arrival patterns at Saqr Port using AIS data to avoid costly demurrage fees.', 'https://github.com/jpslvtr/sgbs210/blob/main/sgbs210.pdf')">
-					<span class="project-link">Ship Arrival Regression Analysis</span>
-					<div class="project-desc">Models to optimize ship arrival patterns at Saqr Port using AIS data to avoid costly demurrage fees.</div>
-				</li>
-			</ul>
+			<details class="toggle">
+				<summary>
+					<svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+					<span>Tools</span>
+				</summary>
+				<ul class="project-list">
+					<li onclick="openModal('Where Can I Watch This Thing?', 'For whenever you ask &quot;where can I watch [movie or show x]?&quot;', 'https://www.wherecaniwatchthisthing.com/')">
+						<span class="project-link">Where Can I Watch This Thing?</span>
+						<div class="project-desc">For whenever you ask "where can I watch [movie or show x]?"</div>
+					</li>
+					<li onclick="openModal('Weather Forecast', 'An app that I mostly use for knowing what to wear before leaving the house for a run.', 'https://jpslvtr.github.io/weather-forecast/')">
+						<span class="project-link">Weather Forecast</span>
+						<div class="project-desc">An app that I mostly use for knowing what to wear before leaving the house for a run.</div>
+					</li>
+					<li onclick="openModal('Pace Calculator', 'Find total time, distance, or pace by entering values for any two of the three.', 'https://jpslvtr.github.io/pace-calc/')">
+						<span class="project-link">Pace Calculator</span>
+						<div class="project-desc">Find total time, distance, or pace by entering values for any two of the three.</div>
+					</li>
+					<li onclick="openModal('Trivia', 'A single-page trivia app.', 'https://jpslvtr.github.io/trivia/')">
+						<span class="project-link">Trivia</span>
+						<div class="project-desc">A snappy single-page trivia app.</div>
+					</li>
+				</ul>
+			</details>
 
-			<span class="cat-label">Tools</span>
-			<ul class="project-list">
-				<li onclick="openModal('Where Can I Watch This Thing?', 'For whenever you ask &quot;where can I watch [movie or show x]?&quot;', 'https://www.wherecaniwatchthisthing.com/')">
-					<span class="project-link">Where Can I Watch This Thing?</span>
-					<div class="project-desc">For whenever you ask "where can I watch [movie or show x]?"</div>
-				</li>
-				<li onclick="openModal('Weather Forecast', 'An app that I mostly use for knowing what to wear before leaving the house for a run.', 'https://jpslvtr.github.io/weather-forecast/')">
-					<span class="project-link">Weather Forecast</span>
-					<div class="project-desc">An app that I mostly use for knowing what to wear before leaving the house for a run.</div>
-				</li>
-				<li onclick="openModal('Pace Calculator', 'Find total time, distance, or pace by entering values for any two of the three.', 'https://jpslvtr.github.io/pace-calc/')">
-					<span class="project-link">Pace Calculator</span>
-					<div class="project-desc">Find total time, distance, or pace by entering values for any two of the three.</div>
-				</li>
-				<li onclick="openModal('Trivia', 'A single-page trivia app.', 'https://jpslvtr.github.io/trivia/')">
-					<span class="project-link">Trivia</span>
-					<div class="project-desc">A snappy single-page trivia app.</div>
-				</li>
-			</ul>
+			<details class="toggle">
+				<summary>
+					<svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+					<span>Random</span>
+				</summary>
+				<ul class="project-list">
+					<li><a href="p/favorite-books.html">Favorite Books</a></li>
+					<li><a href="p/all-books.html">All Books</a></li>
+					<li><a href="p/stanford.html">Favorite Classes at Stanford</a></li>
+				</ul>
+			</details>
 		</div>
 
-		<div class="fade-in" style="animation-delay: 210ms;">
-			<hr>
-			<div class="section-header">
-				<span class="section-label">Random</span>
-			</div>
-			<ul class="project-list" style="margin-top: 0.75rem;">
-				<li><a href="p/favorite-books.html">Favorite Books</a></li>
-				<li><a href="p/all-books.html">All Books</a></li>
-				<li><a href="p/stanford.html">Favorite Classes at Stanford</a></li>
-			</ul>
-		</div>
-
-		<hr>
+		<br>
 		<div class="fade-in" style="animation-delay: 280ms;">
 			<pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -176,7 +189,6 @@ APCYutWyZfH1MraX+owi1yNV3qQq295BMSBEsksJA6EH
 
 	<script>
 		const extendedDescs = {
-			'About': "I'm a <a href=\"https://www.youtube.com/watch?v=5OYy_UtINo4/\" target=\"_blank\" rel=\"noopener noreferrer\">forward deployed software engineer</a> at Palantir Technologies. I previously served as a <a href=\"https://www.navy.com/careers-benefits/careers/intelligence-information-cryptology/cryptologic-warfare-officer\" target=\"_blank\" rel=\"noopener noreferrer\">Cryptologic Warfare Officer (1810)</a> in the US Navy. I graduated from the US Naval Academy and Stanford GSB. I went to business school to work on 1. entrepreneurship and 2. <a href=\"https://www.amazon.com/Sorry-Late-Didnt-Want-Come/dp/1449499236/\" target=\"_blank\" rel=\"noopener noreferrer\">my social battery</a>. Hobbies include ultrarunning, reading good books, and wedging philosophy into conversations.",
 			'Past Chances': "Built and launched a secret-crush matchmaking site for Stanford GSB's Class of 2025, inspired by Dartmouth's \"Last Chances\" tradition. Owned the product, engineering, and launch strategy, building the app with React, TypeScript, Vite, Firebase Auth, Firestore, Firebase Storage, and Cloud Functions. The project drove strong class engagement during graduation week and generated thousands of private match events.",
 			'Scout': "Built and launched a social mobile app for curated place recommendations, combining Google Maps-style saved lists with an Instagram-like discovery layer. The product let users create lists, follow friends, tag places with personal notes, and discover what their community was saving. We tested the idea through Stanford pitch nights, user feedback, and VC conversations, ultimately learning that it was a <a href=\"https://www.youtube.com/watch?v=GU9iT7MW0rs\" target=\"_blank\" rel=\"noopener noreferrer\">tarpit idea</a>. Built with Flutter, Dart, Firebase Firestore, Cloud Functions in TypeScript, and the Google Maps and Places API.",
 			'Revelio': "Built an OSINT reporting platform for military intelligence analysts as part of Stanford's CS224G: Building and Scaling LLM Apps. Revelio aggregated content from sources like Reddit, then let analysts search, chat with a RAG-powered assistant, and generate formatted intelligence reports from sourced material. We went deep on the tech, but learned that success in defense depends heavily on GTM: knowing the right program offices, funding pathways, and acquisition timelines. Built with a FastAPI backend, React frontend, MongoDB Atlas, LangChain, OpenAI embeddings and GPT, Socket.io for real-time streaming, and Dockerized cron jobs for scheduled data ingestion.",
