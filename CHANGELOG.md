@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-30 21:30 EDT - add baby tracker to tools
+
+- Added Baby Tracker as the first item in the Tools toggle, linking to the open source repo
+
 ## 2026-07-19 21:24 EDT — convert project sections to toggles and surface bio
 
 - Project categories are now Notion-style collapsible toggles (Startups, Security, AI, Tools, Random), all collapsed by default with a rotating chevron
